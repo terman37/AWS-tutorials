@@ -202,6 +202,6 @@ mysql -h <endpoint> -u username -p
   print(results)
   ```
 
-  <img src="/python_r1.png" style="zoom: 67%;" />
+  <img src="python_r1.png" style="zoom: 67%;" />
 
 
