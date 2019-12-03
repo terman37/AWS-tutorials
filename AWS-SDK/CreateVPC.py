@@ -50,27 +50,3 @@ RT_public.associate_with_subnet(SubnetId=subnet2.id)
 # Associate RT_main with subnet 1 (not necessary as RT_main is default RT)
 RT_main.associate_with_subnet(SubnetId=subnet1.id)
 
-# # enable public dns hostname so that we can SSH into it later
-# ec2Client = boto3.client('ec2')
-# ec2Client.modify_vpc_attribute(VpcId=vpc.id, EnableDnsSupport={'Value': True})
-# ec2Client.modify_vpc_attribute(VpcId=vpc.id, EnableDnsHostnames={'Value': True})
-#
-# # Create a security group and allow SSH inbound rule through the VPC
-# securitygroup = ec2.create_security_group(GroupName='SSH-ONLY', Description='only allow SSH traffic', VpcId=vpc.id)
-# securitygroup.authorize_ingress(CidrIp='0.0.0.0/0', IpProtocol='tcp', FromPort=22, ToPort=22)
-#
-#
-#  Create a linux instance in the subnet
-# instances = ec2.create_instances(
-#  ImageId='ami-0de53d8956e8dcf80',
-#  InstanceType='t2.micro',
-#  MaxCount=1,
-#  MinCount=1,
-#  NetworkInterfaces=[{
-#  'SubnetId': subnet.id,
-#  'DeviceIndex': 0,
-#  'AssociatePublicIpAddress': True,
-#  'Groups': [securitygroup.group_id]
-#  }],
-#  KeyName='ec2-keypair')
-#
