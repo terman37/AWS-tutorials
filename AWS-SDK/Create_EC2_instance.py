@@ -22,7 +22,10 @@ sg.create_tags(Tags=[{"Key": "Name", "Value": "MY_SG_for_SSH"}])
 
 #  Create a linux instance in the subnet
 t2micro = mysub.create_instances(
-    ImageId='ami-00068cd7555f543d5',
+    # Amazon Linux Ami
+    # ImageId='ami-00068cd7555f543d5',
+    # Ubuntu 18.04 Ami
+    ImageId='ami-04b9e92b5572fa0d1',
     InstanceType='t2.micro',
     MaxCount=1,
     MinCount=1,
