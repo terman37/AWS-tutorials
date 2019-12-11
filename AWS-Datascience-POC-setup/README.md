@@ -66,17 +66,17 @@ MNIST Handwritten text recognition using keras
   conda install opencv
     pip install -r requirements.txt
     ```
-  ```
   
   - copy cnn-minst / keras_flask.py
   - launch keras_flask.py
   
     ```bash
-  python keras_flask.py
-```
+    python keras_flask.py
+    ```
+
   
 
-    
+
 - USE
 
   <img src="webinterface.png" alt="webinterface" style="zoom:50%;" />
