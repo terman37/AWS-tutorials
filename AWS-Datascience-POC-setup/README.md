@@ -15,26 +15,25 @@ MNIST Handwritten text recognition using Keras / TensorFlow
 
     - in public subnet
 
-    - Open port 8888 for Jupyter
-
-    - ubuntu AMI, m5.xlarge
-
-    - Install Miniconda
-
-    ```bash
-	wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-    sh Miniconda3-latest-Linux-x86_64.sh
-    ```
+      - Open port 8888 for Jupyter
+      - ubuntu AMI, m5.xlarge
+	  
+	- Install Miniconda
   
-  - create virtual environment / install requirements.txt
+      ```bash
+      wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+	  sh Miniconda3-latest-Linux-x86_64.sh
+      ```
   
-  - install jupyter notebook
+    - create virtual environment / install requirements.txt
   
-  - add kernel for this virtual environment
+    - install jupyter notebook
   
-  - run 00-mnist-cnn.ipynb on created kernel
+    - add kernel for this virtual environment
   
-  - it will create model file: cnn-minst
+    - run 00-mnist-cnn.ipynb on created kernel
+  
+    - it will create model file: cnn-minst
   
     
   
@@ -43,10 +42,9 @@ MNIST Handwritten text recognition using Keras / TensorFlow
     - in public subnet
   
       - Open port 80 for web access
-  
       - ubuntu AMI, t2.micro
   
-      - install nginx
+    - install nginx
   
       ```bash
       sudo apt update
@@ -59,39 +57,38 @@ MNIST Handwritten text recognition using Keras / TensorFlow
   
   
   - **BACKEND Server**
-      
+    
     - in public subnet
     
-    - ubuntu AMI, t2.micro
-    
+      - ubuntu AMI, t2.micro
       - open port 5000
     
-      - Install Miniconda
+    - Install Miniconda
     
-        ```bash
-        wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-        sh Miniconda3-latest-Linux-x86_64.sh
-        ```
+      ```bash
+      wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+      sh Miniconda3-latest-Linux-x86_64.sh
+      ```
     
-      - create virtual environment / install requirements.txt
+    - create virtual environment / install requirements.txt
     
-        ```bash
-        conda create -n backend
-        conda activate backend
-        conda install opencv
-        pip install -r requirements.txt
-        ```
+      ```bash
+      conda create -n backend
+      conda activate backend
+      conda install opencv
+      pip install -r requirements.txt
+      ```
     
-      - copy cnn-minst / keras_flask.py
+    - copy cnn-minst / keras_flask.py
     
-      - launch keras_flask.py
+    - launch keras_flask.py
     
-        ```
-        python keras_flask.py
-        ```
+      ```
+      python keras_flask.py
+      ```
     
-        
-
+      
+  
 - USE
 
   <img src="webinterface.png" alt="webinterface" style="zoom:50%;" />
