@@ -1,6 +1,6 @@
 # AWS DataScience POC setup
 
-MNIST Handwritten text recognition using keras
+MNIST Handwritten text recognition using Keras / TensorFlow
 
 ### Architecture
 
@@ -15,66 +15,84 @@ MNIST Handwritten text recognition using keras
 
     - in public subnet
 
-    - Open port 8888 for jupyter
+    - Open port 8888 for Jupyter
 
     - ubuntu AMI, m5.xlarge
 
-    - create venv / install requirements.txt
+    - Install Miniconda
 
-    - install jupyter notebook
-
-    - add kernel for this venv
-
-    - run 00-mnist-cnn.ipynb on created kernel
-
-    - it will create model file: cnn-minst
-
-      
-
-  - **FRONTEND Server**
-
-    - in public subnet
-
-    - Open port 80 for web access
-
-    - ubuntu AMI, t2.micro
-
-    - install nginx
-
-      ```
-      sudo apt update
-      sudo apt install nginx
-      ```
+      ```bash
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+      sh Miniconda3-latest-Linux-x86_64.sh
+    ```
   
-- copy index.html and static folder in /var/www/html/
+  - create virtual environment / install requirements.txt
   
-  - modify index.html with your BACKEND public IP.
+  - install jupyter notebook
+  
+  - add kernel for this virtual environment
+  
+  - run 00-mnist-cnn.ipynb on created kernel
+  
+  - it will create model file: cnn-minst
+  
     
   
+- **FRONTEND Server**
   
+  - in public subnet
   
-- **BACKEND Server**
-    - in private subnet
-  - ubuntu AMI, t2.micro
-    - route private subnet to NAT instance
-    - allow inbound port 5000 from anywhere
-    - create venv / install requirements.txt
-
-    ```
-  conda create -n backend
-    conda activate backend
-  conda install opencv
-    pip install -r requirements.txt
-    ```
+    - Open port 80 for web access
   
-  - copy cnn-minst / keras_flask.py
-  - launch keras_flask.py
+    - ubuntu AMI, t2.micro
+  
+    - install nginx
   
     ```bash
-    python keras_flask.py
+    sudo apt update
+    sudo apt install nginx
     ```
-
+    
+    - copy index.html and static folder in /var/www/html/
+    - modify index.html with your BACKEND public IP.
   
+  
+  
+  - **BACKEND Server**
+      
+    - in public subnet
+    
+    - ubuntu AMI, t2.micro
+    
+      - open port 5000
+    
+      - Install Miniconda
+    
+          ```bash
+          wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+          sh Miniconda3-latest-Linux-x86_64.sh
+          ```
+    
+      - create virtual environment / install requirements.txt
+    
+          ```bash
+          conda create -n backend
+          conda activate backend
+          conda install opencv
+          pip install -r requirements.txt
+          ```
+    
+      - copy cnn-minst / keras_flask.py
+    
+      - launch keras_flask.py
+    
+        ```
+        python keras_flask.py
+        ```
+    
+        
+
+
 
 
 - USE
@@ -87,18 +105,3 @@ MNIST Handwritten text recognition using keras
 
   
 
-  
-
-  
-
-  - > **NAT INSTANCE**
-  >
-    > - in public subnet
-  >
-    > - amzn-ami-vpc-nat AMI, t2.micro
-  >
-    > - allow all inbound from local
-  >
-    > - do not forget to disable source/dest check
-  >
-  
