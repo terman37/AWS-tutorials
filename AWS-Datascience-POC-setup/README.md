@@ -7,7 +7,7 @@ MNIST Handwritten text recognition using Keras / TensorFlow
 - VPC
 
   - IGW
-  - 2 subnets (1 private / 1 public)
+  - 1 public subnet
 
 - EC2
 
