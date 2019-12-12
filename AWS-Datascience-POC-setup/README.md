@@ -21,9 +21,9 @@ MNIST Handwritten text recognition using Keras / TensorFlow
 
     - Install Miniconda
 
-      ```bash
-    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-      sh Miniconda3-latest-Linux-x86_64.sh
+    ```bash
+	wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    sh Miniconda3-latest-Linux-x86_64.sh
     ```
   
   - create virtual environment / install requirements.txt
@@ -38,20 +38,20 @@ MNIST Handwritten text recognition using Keras / TensorFlow
   
     
   
-- **FRONTEND Server**
+  - **FRONTEND Server**
   
-  - in public subnet
+    - in public subnet
   
-    - Open port 80 for web access
+      - Open port 80 for web access
   
-    - ubuntu AMI, t2.micro
+      - ubuntu AMI, t2.micro
   
-    - install nginx
+      - install nginx
   
-    ```bash
-    sudo apt update
-    sudo apt install nginx
-    ```
+      ```bash
+      sudo apt update
+      sudo apt install nginx
+      ```
     
     - copy index.html and static folder in /var/www/html/
     - modify index.html with your BACKEND public IP.
@@ -68,19 +68,19 @@ MNIST Handwritten text recognition using Keras / TensorFlow
     
       - Install Miniconda
     
-          ```bash
-          wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-          sh Miniconda3-latest-Linux-x86_64.sh
-          ```
+        ```bash
+        wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+        sh Miniconda3-latest-Linux-x86_64.sh
+        ```
     
       - create virtual environment / install requirements.txt
     
-          ```bash
-          conda create -n backend
-          conda activate backend
-          conda install opencv
-          pip install -r requirements.txt
-          ```
+        ```bash
+        conda create -n backend
+        conda activate backend
+        conda install opencv
+        pip install -r requirements.txt
+        ```
     
       - copy cnn-minst / keras_flask.py
     
@@ -91,9 +91,6 @@ MNIST Handwritten text recognition using Keras / TensorFlow
         ```
     
         
-
-
-
 
 - USE
 
