@@ -23,8 +23,10 @@ MNIST Handwritten text recognition using Keras / TensorFlow
       ```bash
       wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 	  sh Miniconda3-latest-Linux-x86_64.sh
-      ```
+    ```
   
+	- Files to be copied from [TRAINMACHINE](TrainMachine/) folder
+	
     - create virtual environment / install requirements.txt
   
     - install jupyter notebook
@@ -51,7 +53,10 @@ MNIST Handwritten text recognition using Keras / TensorFlow
       sudo apt install nginx
       ```
     
+	- Files to be copied from [FRONTEND](FrontEnd/) folder
+		
     - copy index.html and static folder in /var/www/html/
+		
     - modify index.html with your BACKEND public IP.
   
   
@@ -69,7 +74,9 @@ MNIST Handwritten text recognition using Keras / TensorFlow
       wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
       sh Miniconda3-latest-Linux-x86_64.sh
       ```
-    
+	  
+    - Files to be copied from [BACKEND](BackEnd/) folder
+		
     - create virtual environment / install requirements.txt
     
       ```bash
@@ -80,14 +87,12 @@ MNIST Handwritten text recognition using Keras / TensorFlow
       ```
     
     - copy cnn-minst / keras_flask.py
-    
+		
     - launch keras_flask.py
     
       ```
       python keras_flask.py
       ```
-    
-      
   
 - USE
 
