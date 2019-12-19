@@ -5,8 +5,8 @@ Description: >-
 # This template creates:
 #   VPC
 #   Internet Gateway
-#   Public Route Table
 #   Public Subnet
+#    - Public Route Table
 #   Private Subnet
 
 ######################
@@ -23,14 +23,17 @@ Resources:
       EnableDnsHostnames: true
       CidrBlock: 192.168.0.0/16
       Tags:
-      -
-        Key: 'Name'
-        Value: !Sub '${AWS::StackName}-VPC'
+        - Key: 'Name'
+          Value: !Sub '${AWS::StackName}-VPC'
       
   ## Internet Gateway
   InternetGateway:
     Type: AWS::EC2::InternetGateway
-  
+    Properties:
+      Tags:
+        - Key: 'Name'
+          Value: !Sub '${AWS::StackName}-IGW'
+
   VPCGatewayAttachment:
     Type: AWS::EC2::VPCGatewayAttachment
     Properties:
@@ -42,6 +45,9 @@ Resources:
     Type: AWS::EC2::RouteTable
     Properties:
       VpcId: !Ref VPC
+      Tags:
+        - Key: 'Name'
+          Value: !Sub '${AWS::StackName}-RT-Pub'
   
   PublicRoute:
     Type: AWS::EC2::Route
@@ -57,6 +63,9 @@ Resources:
     Properties:
       VpcId: !Ref VPC
       CidrBlock: 192.168.20.0/24
+      Tags:
+        - Key: 'Name'
+          Value: !Sub '${AWS::StackName}-Pub-Sub'
   
   PublicSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -69,6 +78,9 @@ Resources:
     Type: AWS::EC2::RouteTable
     Properties:
       VpcId: !Ref VPC
+      Tags:
+        - Key: 'Name'
+          Value: !Sub '${AWS::StackName}-RT-Priv'
       
   ## Private Subnet
   PrivateSubnet:
@@ -76,6 +88,9 @@ Resources:
     Properties:
       VpcId: !Ref VPC
       CidrBlock: 192.168.10.0/24
+      Tags:
+        - Key: 'Name'
+          Value: !Sub '${AWS::StackName}-Priv-Sub'
   
   PrivateSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation

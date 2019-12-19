@@ -11,6 +11,5 @@
 5. [AWS Sdk - Python boto3](AWS-SDK/)
 6. [Create / Setup a Jupyter Notebook and virtual environments](AWS-Jupyter-setup-and-venv/)
 7. [Datascience POC setup (Keras/Tensorflow)](AWS-Datascience-POC-setup)
-8. [Serverless Architecture](AWS-ServerLess-Architecture)
 9. [SageMaker](AWS-SageMaker)
 

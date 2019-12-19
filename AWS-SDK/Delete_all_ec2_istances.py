@@ -2,7 +2,7 @@ import boto3
 
 ec2 = boto3.resource('ec2')
 #client = boto3.client('ec2')
-client = ec2.meta.client
+# client = ec2.meta.client
 
 # Get ids of all running or stopped instances
 filters = [{'Name': 'instance-state-name', 'Values': ['running', 'stopped']}]

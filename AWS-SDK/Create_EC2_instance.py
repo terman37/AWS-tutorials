@@ -4,31 +4,33 @@ ec2 = boto3.resource('ec2')
 
 # Config
 # **********************************************************************************
-# machine name
-myinstancename = 'NAT'
-
-# AMI to use (select one)
-# myami = 'ami-00068cd7555f543d5'  # Amazon Linux Ami
-# myami ='ami-04b9e92b5572fa0d1' # Ubuntu 18.04 Ami
-myami = 'ami-00a9d4a05375b2763' # NAT instance
-
+# Network
+# VPC prefix name (or stack name)
+prefix_name = "MY"
 # Subnet (select one) # public / private
 flag_subnet = 'public'
-
-# VPC name
-myvpc_name = 'MY_VPC'
-
 # **********************************************************************************
+# Instance
+# Machine name
+myinstancename = 'simple'
+# AMI to use (select one)
+myami = 'ami-00068cd7555f543d5'  # Amazon Linux Ami
+# myami ='ami-04b9e92b5572fa0d1' # Ubuntu 18.04 Ami
+# myami = 'ami-00a9d4a05375b2763' # NAT instance
+# **********************************************************************************
+
 # Retrieve Vpc based on name tag
-filters = [{'Name': 'tag:Name', 'Values': [myvpc_name]}]
+filters = [{'Name': 'tag:Name', 'Values': [prefix_name + "-VPC"]}]
 vpcs = list(ec2.vpcs.filter(Filters=filters))
 myvpc = vpcs[0]
 
 # Choose subnet
 if flag_subnet == 'public':
-    mysubnet = 'SubNet2_Public'
+    mysubnet = prefix_name + "-Pub-Sub"
+    flag_publicIP = True
 else:
-    mysubnet = 'SubNet1_Private'
+    mysubnet = prefix_name + "-Priv-Sub"
+    flag_publicIP = False
 
 # Retrieve Subnet based on name tag
 filters = [{'Name': 'tag:Name', 'Values': [mysubnet]}]
@@ -42,11 +44,6 @@ mysgname = 'SG-' + myinstancename
 sg = ec2.create_security_group(GroupName=mysgname, Description='SG for instance:' + myinstancename, VpcId=myvpc.id)
 sg.authorize_ingress(CidrIp='0.0.0.0/0', IpProtocol='tcp', FromPort=22, ToPort=22)
 sg.create_tags(Tags=[{"Key": "Name", "Value": "SG-" + myinstancename}])
-
-if mysubnet == 'SubNet2_Public':
-    flag_publicIP = True
-else:
-    flag_publicIP = False
 
 #  Create an EC2 instance
 t2micro = ec2.create_instances(
