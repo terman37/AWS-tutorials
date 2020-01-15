@@ -13,7 +13,7 @@ def getpicture():
     data = 'MY BASE64-ENCODED STRING'
     binary_data = a2b_base64(imgData[16:])
     with open('image.jpg', 'wb') as fd:
-        fd.write(binary_data)
+        fd.write(imgData)
 
     return "Hello, World!"
 
