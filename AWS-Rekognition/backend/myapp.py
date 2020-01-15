@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
 from urllib.request import urlopen
+from binascii import a2b_base64
 
 app = Flask(__name__)
 CORS(app) #added by me
@@ -8,10 +9,12 @@ CORS(app) #added by me
 @app.route("/get_picture/", methods=['GET', 'POST'])
 def getpicture():
     imgData = request.get_data()
-    # data = 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUAAAhwAAAFoCAYAAAA.......'
-    response = urlopen(imgData)
-    with open('image.jpg', 'wb') as f:
-        f.write(response.file.read())
+
+    data = 'MY BASE64-ENCODED STRING'
+    binary_data = a2b_base64(imgData)
+    with open('image.png', 'wb') as fd:
+        fd.write(binary_data)
+
     return "Hello, World!"
 
 if __name__ == "__main__":
