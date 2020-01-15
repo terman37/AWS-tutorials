@@ -12,15 +12,26 @@
         <div id="my_camera" style="width:320px; height:240px;"></div>
         <div id="my_result"></div>
 
+        <!-- Configure a few settings and attach camera -->
         <script language="JavaScript">
-            Webcam.attach( '#my_camera' );
-            function take_snapshot() {
-                Webcam.snap( function(data_uri) {
-                    document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
-                } );
-            }
-        </script>
+         Webcam.set({
+          width: 320,
+          height: 240,
+          image_format: 'jpeg',
+          jpeg_quality: 90
+         });
+         Webcam.attach( '#my_camera' );
 
-        <a href="javascript:void(take_snapshot())">Take Snapshot</a>
+        <!-- Code to handle taking the snapshot and displaying it locally -->
+        function take_snapshot() {
+
+         // take snapshot and get image data
+         Webcam.snap( function(data_uri) {
+          // display results in page
+          document.getElementById('results').innerHTML =
+          '<img src="'+data_uri+'"/>';
+          } );
+        }
+        </script>
     </body>
 </html>
