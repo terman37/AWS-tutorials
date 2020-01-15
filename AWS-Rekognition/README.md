@@ -37,7 +37,7 @@
 
 - clone github repository
 
-  ```bash
+  ```
   git clone https://github.com/terman37/AWS-tutorials.git
   ```
 
@@ -60,3 +60,44 @@
     <img src="chrome_webcam.png" alt="chrome_webcam" style="zoom:50%;" />
 
 - Test frontend access in chrome at [http://<PublicIP>](http://<PublicIP>)
+
+## Setup Backend Server
+
+- Security group: open port 22 and 5000.
+
+- install miniconda:
+
+  ```bash
+  sudo apt update
+  wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  sh Miniconda3-latest-Linux-x86_64.sh
+  ```
+
+- exit and reconnect to ssh
+
+- create virtual environment (named flask)
+
+  ```bash
+  conda create -n flask python=3.7
+  conda activate flask
+  ```
+
+- install Flask
+
+  ```bash
+  pip install Flask
+  ```
+
+- clone github repository
+
+  ```
+  git clone https://github.com/terman37/AWS-tutorials.git
+  ```
+
+- run Flask app
+
+  ```
+  cd ~/AWS-tutorials/AWS-Rekognition/backend
+  ```
+
+  

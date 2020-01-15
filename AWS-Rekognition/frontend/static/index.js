@@ -1,3 +1,5 @@
+var backendip = '34.238.190.11'
+
 function set_webcam(){
     Webcam.set(
         {
@@ -15,7 +17,18 @@ function take_snapshot() {
     Webcam.snap(
         function(data_uri) {
             // display results in page
-            $('#results').html('<img src="'+data_uri+'"/>');
+            $('#screenshot').html('<img src="'+data_uri+'"/>');
+
+            $.post(
+                'http://'+backendip+':5000/get_picture',
+                data_uri,
+                result_f,
+                'html'
+            );
+            function result_f(data_back){
+                $('#results').html(data_back);
+//                var json_result = JSON.parse(data_back);
+            }
         }
     );
 }
