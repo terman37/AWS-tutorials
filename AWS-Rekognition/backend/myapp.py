@@ -8,7 +8,7 @@ CORS(app) #added by me
 
 @app.route("/get_picture/", methods=['GET', 'POST'])
 def getpicture():
-    imgData = request.get_data()
+    imgData = str(request.get_data())
     imgData64 = imgData[imgData.find(',')+1:]
     binary_data = a2b_base64(imgData64)
     with open('image.jpg', 'wb') as fd:
