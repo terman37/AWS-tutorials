@@ -7,7 +7,9 @@ CORS(app) #added by me
 @app.route("/get_picture/", methods=['GET', 'POST'])
 def getpicture():
     imgData = request.get_data()
-    print(imgData)
+    response = urllib.request.urlopen(imgData)
+    with open('image.jpg', 'wb') as f:
+        f.write(response.file.read())
     return "Hello, World!"
 
 if __name__ == "__main__":
