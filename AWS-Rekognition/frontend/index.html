@@ -8,30 +8,34 @@
 
     <body>
 
-        <script src="static/webcam.min.js"></script>
         <div id="my_camera" style="width:320px; height:240px;"></div>
-        <div id="my_result"></div>
+        <input type=button value="Take Snapshot" onClick="take_snapshot()">
 
-        <!-- Configure a few settings and attach camera -->
-        <script language="JavaScript">
-         Webcam.set({
-          width: 320,
-          height: 240,
-          image_format: 'jpeg',
-          jpeg_quality: 90
-         });
-         Webcam.attach( '#my_camera' );
+<div id="results" ></div>
 
-        <!-- Code to handle taking the snapshot and displaying it locally -->
-        function take_snapshot() {
+<!-- Webcam.min.js -->
+<script type="text/javascript" src="webcamjs/webcam.min.js"></script>
 
-         // take snapshot and get image data
-         Webcam.snap( function(data_uri) {
-          // display results in page
-          document.getElementById('results').innerHTML =
-          '<img src="'+data_uri+'"/>';
-          } );
-        }
-        </script>
+<!-- Configure a few settings and attach camera -->
+<script language="JavaScript">
+ Webcam.set({
+  width: 320,
+  height: 240,
+  image_format: 'jpeg',
+  jpeg_quality: 90
+ });
+ Webcam.attach( '#my_camera' );
+
+<!-- Code to handle taking the snapshot and displaying it locally -->
+function take_snapshot() {
+
+ // take snapshot and get image data
+ Webcam.snap( function(data_uri) {
+  // display results in page
+  document.getElementById('results').innerHTML =
+  '<img src="'+data_uri+'"/>';
+  } );
+}
+</script>
     </body>
 </html>
