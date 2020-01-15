@@ -19,16 +19,15 @@ function take_snapshot() {
             // display results in page
             $('#screenshot').html('<img src="'+data_uri+'"/>');
 
-            $.post(
-                'http://'+backendip+':5000/get_picture',
-                data_uri,
-                result_f,
-                'html'
-            );
-            function result_f(data_back){
-                $('#results').html(data_back);
-//                var json_result = JSON.parse(data_back);
-            }
+//            $.post(
+//                'http://'+backendip+':5000/get_picture',
+//                data_uri,
+//                result_f,
+//                'html'
+//            );
+//            function result_f(data_back){
+//                $('#results').html(data_back);
+//            }
         }
     );
 }
