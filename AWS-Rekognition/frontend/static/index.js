@@ -25,9 +25,9 @@ function take_snapshot() {
                 result_f,
                 'html'
             );
-//            function result_f(data_back){
-//                $('#results').html(data_back);
-//            }
+            function result_f(data_back){
+                $('#results').text(data_back);
+            }
         }
     );
 }
