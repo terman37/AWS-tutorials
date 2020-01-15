@@ -15,12 +15,14 @@ function take_snapshot() {
     Webcam.snap(
         function(data_uri) {
             // display results in page
-            document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
+            $('#results').html = '<img src="'+data_uri+'"/>';
+            //document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
+
         }
     );
 }
 
-function recognize() {
+function rekognize() {
 
 
 }
