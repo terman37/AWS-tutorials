@@ -86,18 +86,19 @@
 
   ```bash
   pip install Flask
+  pip install flask_cors
   ```
 
 - clone github repository
 
-  ```
+  ```bash
   git clone https://github.com/terman37/AWS-tutorials.git
   ```
 
 - run Flask app
 
-  ```
-  cd ~/AWS-tutorials/AWS-Rekognition/backend
+  ```bash
+  python ~/AWS-tutorials/AWS-Rekognition/backend/myapp.py
   ```
 
   
