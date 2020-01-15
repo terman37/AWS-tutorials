@@ -13,6 +13,9 @@ def getpicture():
     binary_data = a2b_base64(imgData64)
     with open('image.jpg', 'wb') as fd:
         fd.write(binary_data)
+    print("screenshot saved as image.jpg")
+    # TODO now send it in S3 bucket
+
 
     return "Hello, World!"
 
