@@ -35,7 +35,7 @@ for route_table in vpc.route_tables.all():
         if association.main:
             main_route_table.append(route_table)
 RT_main = main_route_table[0]
-RT_main.create_tags(Tags=[{"Key": "Name", prefix_name + "-RT-Priv"}])
+RT_main.create_tags(Tags=[{"Key": "Name", "Value": prefix_name + "-RT-Priv"}])
 
 # create a route table
 RT_public = vpc.create_route_table()
