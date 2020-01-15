@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask_cors import CORS
-import urllib.request
+from urllib.request import urlopen
 
 app = Flask(__name__)
 CORS(app) #added by me
@@ -8,7 +8,8 @@ CORS(app) #added by me
 @app.route("/get_picture/", methods=['GET', 'POST'])
 def getpicture():
     imgData = request.get_data()
-    response = urllib.request.urlopen(imgData)
+    # data = 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUAAAhwAAAFoCAYAAAA.......'
+    response = urlopen(imgData)
     with open('image.jpg', 'wb') as f:
         f.write(response.file.read())
     return "Hello, World!"
