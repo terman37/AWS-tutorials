@@ -12,10 +12,10 @@ flag_subnet = 'public'
 # **********************************************************************************
 # Instance
 # Machine name
-myinstancename = 'simple'
+myinstancename = 'frontend'
 # AMI to use (select one)
-myami = 'ami-00068cd7555f543d5'  # Amazon Linux Ami
-# myami ='ami-04b9e92b5572fa0d1' # Ubuntu 18.04 Ami
+# myami = 'ami-00068cd7555f543d5'  # Amazon Linux Ami
+myami ='ami-04b9e92b5572fa0d1' # Ubuntu 18.04 Ami
 # myami = 'ami-00a9d4a05375b2763' # NAT instance
 # **********************************************************************************
 
