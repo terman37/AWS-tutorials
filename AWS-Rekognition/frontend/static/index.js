@@ -7,7 +7,7 @@ function set_webcam(){
             jpeg_quality: 90
         }
      );
-    Webcam.attach( '#my_camera' );
+    Webcam.attach('#my_camera');
 }
 
 function take_snapshot() {
@@ -16,8 +16,6 @@ function take_snapshot() {
         function(data_uri) {
             // display results in page
             $('#results').html('<img src="'+data_uri+'"/>');
-            //document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
-
         }
     );
 }
