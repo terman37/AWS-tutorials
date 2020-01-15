@@ -9,11 +9,10 @@ CORS(app) #added by me
 @app.route("/get_picture/", methods=['GET', 'POST'])
 def getpicture():
     imgData = request.get_data()
-
-    data = 'MY BASE64-ENCODED STRING'
-    binary_data = a2b_base64(imgData[16:])
+    imgData64 = imgData[imgData.find(',')+1:]
+    binary_data = a2b_base64(imgData64)
     with open('image.jpg', 'wb') as fd:
-        fd.write(imgData)
+        fd.write(binary_data)
 
     return "Hello, World!"
 
