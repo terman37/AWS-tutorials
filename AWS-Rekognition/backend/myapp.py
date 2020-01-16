@@ -28,7 +28,7 @@ def getpicture():
 
 
 @app.route("/compare/", methods=['GET', 'POST'])
-def getpicture():
+def comparepicture():
     rdata = request.get_data()
     image_name = 'image2.jpg'
     save_uri_as_jpeg(rdata, image_name)
