@@ -3,24 +3,39 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="static/index.css">
+        <link rel="stylesheet" href="static/bootstrap.min.css">
         <title>AWS Rekognition</title>
     </head>
 
-    <body>
+    <body class="bg-secondary">
 
 		<script type="text/javascript" src="static/webcam.min.js"></script>
         <script type="text/javascript" src="static/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="static/bootstrap.min.js"></script>
 		<script src="static/index.js"></script>
 
-		<div id="screenshot"></div>
-        <div id="my_camera"></div>
+        <div id="PAGE" class="container-fluid ">
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div id="my_camera"></div>
+                    </div>
+                    <div class="row">
+                        <input type=button value="Take Snapshot" onClick="take_snapshot()">
+                        <input type=button value="Check Picture" onClick="rekognize()">
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="results"></div>
+                </div>
 
-        <input type=button value="Take Snapshot" onClick="take_snapshot()">
-        <input type=button value="Check Picture" onClick="rekognize()">
-
-        <div id="results"></div>
-
+                <div class="col">
+                    <div id="screenshot"></div>
+                </div>
+            </div>
+        </div>
 		<script language="JavaScript">
 			 set_webcam()
 		</script>
