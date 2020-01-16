@@ -13,16 +13,14 @@ function set_webcam(){
 }
 
 function take_snapshot(id) {
-    var datatosend = id;
     // take snapshot and get image data
     Webcam.snap(
         function(data_uri) {
             // display results in page
             $('#screenshot'+id).html('<img src="'+data_uri+'"/>');
-            datatosend += "&" + data_uri;
             $.post(
-                'http://'+backendip+':5000/get_picture/',
-                datatosend,
+                'http://'+backendip+':5000/get_picture'+id+'/',
+                data_uri,
                 result_f,
                 'html'
             );
