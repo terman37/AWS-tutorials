@@ -11,6 +11,7 @@ CORS(app)  # added by me
 @app.route("/get_picture/", methods=['GET', 'POST'])
 def getpicture():
     rdata = request.get_data()
+    print(rdata)
     image_name = 'image1.jpg'
     save_uri_as_jpeg(rdata, image_name)
     print("screenshot saved as %s" % image_name)
@@ -29,19 +30,22 @@ def getpicture():
 
 @app.route("/compare/", methods=['GET', 'POST'])
 def comparepicture():
-    rdata = request.get_data()
+
+
+    reko = boto3.client('rekognition')
+    response = reko.detect_faces(
+        Image={
+            'S3Object': {
+                'Bucket': 'images-for-reko',
+                'Name': imagename,
+            }
+        },
+        Attributes=[
+            'ALL',
+        ]
+    )
+    return response
     image_name = 'image2.jpg'
-    save_uri_as_jpeg(rdata, image_name)
-    print("screenshot saved as %s" % image_name)
-
-    # Upload in S3 bucket
-    upload_to_S3(image_name)
-
-    # # Launch Reko detect faces...
-    # myjson = AWSdetect_faces(image_name)
-    #
-    # # Extract Json infos
-    # answer = get_features_from_json(myjson)
 
     answer = "compare"
     return answer

@@ -13,11 +13,13 @@ function set_webcam(){
 }
 
 function take_snapshot(id) {
+    var datatosend = id;
     // take snapshot and get image data
     Webcam.snap(
         function(data_uri) {
             // display results in page
             $('#screenshot'+id).html('<img src="'+data_uri+'"/>');
+            datatosend += "&" + data_uri;
             $.post(
                 'http://'+backendip+':5000/get_picture/',
                 data_uri,
@@ -32,5 +34,19 @@ function take_snapshot(id) {
 }
 
 function rekognize() {
-//    take_snapshot(destin = 'compare/')
+
+    var pic1 = $('#screenshot1').contents().length
+    var pic1 = $('#screenshot1').contents().length
+
+    if(pic1>0 && pic2>0){
+        $.post(
+            'http://'+backendip+':5000/compare/',
+            "nothing",
+            result_f,
+            'html'
+        );
+        function result_f(data_back){
+            $('#compare').html($.parseHTML(data_back));
+        }
+    }
 }
