@@ -29,7 +29,6 @@ function take_snapshot(destin = 'get_picture/') {
                 'html'
             );
             function result_f(data_back){
-
                 $('#results').html($.parseHTML(data_back));
             }
         }

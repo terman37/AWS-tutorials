@@ -27,6 +27,25 @@ def getpicture():
     return answer
 
 
+@app.route("/compare/", methods=['GET', 'POST'])
+def getpicture():
+    rdata = request.get_data()
+    image_name = 'image2.jpg'
+    save_uri_as_jpeg(rdata, image_name)
+    print("screenshot saved as %s" % image_name)
+
+    # Upload in S3 bucket
+    upload_to_S3(image_name)
+
+    # # Launch Reko detect faces...
+    # myjson = AWSdetect_faces(image_name)
+    #
+    # # Extract Json infos
+    # answer = get_features_from_json(myjson)
+
+    answer = "compare"
+    return answer
+
 def save_uri_as_jpeg(uri, imagename):
     imgData = str(uri)
     imgData64 = imgData[imgData.find(',') + 1:]
