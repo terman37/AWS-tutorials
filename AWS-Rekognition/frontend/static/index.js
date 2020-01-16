@@ -19,7 +19,7 @@ function take_snapshot(id) {
             // display results in page
             $('#screenshot'+id).html('<img src="'+data_uri+'"/>');
             $.post(
-                'http://'+backendip+':5000/'+destin,
+                'http://'+backendip+':5000/get_picture/',
                 data_uri,
                 result_f,
                 'html'
