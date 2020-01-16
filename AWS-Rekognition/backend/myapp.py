@@ -40,7 +40,6 @@ def getpicture(myid):
 def comparepicture():
     answer = AWScomparefaces()
     print(answer)
-
     return answer
 
 
