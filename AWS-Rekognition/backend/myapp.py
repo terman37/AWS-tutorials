@@ -38,24 +38,12 @@ def getpicture(myid):
 @app.route("/compare/", methods=['GET', 'POST'])
 def comparepicture():
 
-
-    reko = boto3.client('rekognition')
-    response = reko.detect_faces(
-        Image={
-            'S3Object': {
-                'Bucket': 'images-for-reko',
-                'Name': imagename,
-            }
-        },
-        Attributes=[
-            'ALL',
-        ]
-    )
-    return response
-    image_name = 'image2.jpg'
+    answer = AWScomparefaces()
+    print(answer)
 
     answer = "compare"
     return answer
+
 
 def save_uri_as_jpeg(uri, imagename):
     imgData = str(uri)
@@ -90,6 +78,29 @@ def AWSdetect_faces(imagename):
             'ALL',
         ]
     )
+    return response
+
+
+def AWScomparefaces():
+    reko = boto3.client('rekognition')
+
+    response = reko.compare_faces(
+        SourceImage={
+            'S3Object': {
+                'Bucket': 'images-for-reko',
+                'Name': 'image1.jpg',
+            }
+        },
+        TargetImage={
+            'S3Object': {
+                'Bucket': 'images-for-reko',
+                'Name': 'image2.jpg',
+            }
+        },
+        SimilarityThreshold=90,
+        QualityFilter='AUTO'
+    )
+
     return response
 
 
