@@ -82,7 +82,7 @@ def get_features_from_json(myjson):
                     for emotion in details:
                         if emotion['Confidence'] > 50:
                             mystr += "<td>Emotion</td><td>%s</td><td>%.2f</td>" % (emotion['Type'], emotion['Confidence'])
-                mystr += "<tr>"
+                mystr += "</tr>"
         mystr += "</table>"
     elif nbfaces > 1:
         mystr += "%d faces found on picture...\n" % len(facedetails)
