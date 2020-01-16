@@ -89,6 +89,7 @@
   ```bash
   pip install Flask
   pip install flask_cors
+  pip install boto3
   ```
 
 - clone github repository
@@ -103,4 +104,21 @@
   python ~/AWS-tutorials/AWS-Rekognition/backend/myapp.py
   ```
 
-  
+
+
+
+
+
+TODO
+
+​	pip install boto3
+
+​	mkdir ~/.aws
+
+​	sudo nano ~/.aws/credentials
+
+​	sudo nano ~/.aws/config
+
+​	
+
+​	client = boto3.client('s3')
