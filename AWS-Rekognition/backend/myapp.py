@@ -73,7 +73,7 @@ def get_features_from_json(myjson):
         mystr += '<table class="table table-striped bg-light m-1">'
         for attribute, details in face.items():
             if attribute not in notusedattributes:
-                mystr += "<tr>"
+                mystr += '<tr class="p-1">'
                 if attribute == 'AgeRange':
                     mystr += "<td>%s</td><td>%d</td><td>%d yo</td>" % (attribute, details['Low'], details['High'])
                 elif attribute != "Emotions":
