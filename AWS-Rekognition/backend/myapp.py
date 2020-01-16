@@ -104,7 +104,7 @@ def AWScomparefaces():
     mystr = ""
     if len(FaceMatch) > 0:
         FirstMatch = FaceMatch[0]
-        mystr += FirstMatch['Similarity']
+        mystr += str(FirstMatch['Similarity'])
     else:
         mystr += "No Matching face"
 
