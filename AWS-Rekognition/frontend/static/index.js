@@ -22,7 +22,7 @@ function take_snapshot(id) {
             datatosend += "&" + data_uri;
             $.post(
                 'http://'+backendip+':5000/get_picture/',
-                data_uri,
+                datatosend,
                 result_f,
                 'html'
             );
