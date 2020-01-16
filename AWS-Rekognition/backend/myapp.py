@@ -7,6 +7,7 @@ import json
 app = Flask(__name__)
 CORS(app)  # added by me
 
+
 @app.route("/get_picture1/", methods=['GET', 'POST'])
 def p1():
     return getpicture(1)
@@ -37,7 +38,6 @@ def getpicture(myid):
 
 @app.route("/compare/", methods=['GET', 'POST'])
 def comparepicture():
-
     answer = AWScomparefaces()
     print(answer)
 
@@ -101,11 +101,11 @@ def AWScomparefaces():
     )
 
     FaceMatch = response['FaceMatches']
-    mystr=""
-    if len(FaceMatch)>0:
+    mystr = ""
+    if len(FaceMatch) > 0:
         FirstMatch = FaceMatch[0]
         mystr += FirstMatch['Similarity']
-    else
+    else:
         mystr += "No Matching face"
 
     return mystr
@@ -125,11 +125,13 @@ def get_features_from_json(myjson):
                 if attribute == 'AgeRange':
                     mystr += "<td>%s</td><td>%d</td><td>%d yo</td>" % (attribute, details['Low'], details['High'])
                 elif attribute != "Emotions":
-                    mystr += "<td>%s</td><td>%s</td><td>%.2f</td>" % (attribute, details['Value'], details['Confidence'])
+                    mystr += "<td>%s</td><td>%s</td><td>%.2f</td>" % (
+                    attribute, details['Value'], details['Confidence'])
                 else:
                     for emotion in details:
                         if emotion['Confidence'] > 50:
-                            mystr += "<td>Emotion</td><td>%s</td><td>%.2f</td>" % (emotion['Type'], emotion['Confidence'])
+                            mystr += "<td>Emotion</td><td>%s</td><td>%.2f</td>" % (
+                            emotion['Type'], emotion['Confidence'])
                 mystr += "</tr>"
         mystr += "</table>"
     elif nbfaces > 1:
@@ -137,6 +139,7 @@ def get_features_from_json(myjson):
     else:
         mystr += "Nobody on picture...\n"
     return mystr
+
 
 if __name__ == "__main__":
     # run the app locally on the given port
