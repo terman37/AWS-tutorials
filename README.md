@@ -12,4 +12,5 @@
 6. [Create / Setup a Jupyter Notebook and virtual environments](AWS-Jupyter-setup-and-venv/)
 7. [Datascience POC setup (Keras/Tensorflow)](AWS-Datascience-POC-setup)
 9. [SageMaker](AWS-SageMaker)
+9. [Rekognition (using Flask backend)](AWS-Rekognition)
 
