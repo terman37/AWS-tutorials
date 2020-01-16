@@ -4,7 +4,7 @@
 
 ## Use case:
 
-- html webpage to take a picture using webcam or file upload button
+- html webpage to take a picture using webcam
 
 - upload picture to S3 bucket
 - use facial analysis to extract attributes from pictures (show it)
@@ -67,7 +67,7 @@
   nano ~/AWS-tutorials/AWS-Rekognition/frontend/static/index.js
   ```
 
-- Test frontend access in chrome at [http://<PublicIP>](http://<PublicIP>)
+- 
 
 ## Setup Backend Server
 
@@ -142,4 +142,10 @@
 
 
 
+## Test it !
 
+Test frontend access in chrome at [http://<PublicIP>](http://<PublicIP>)
+
+should look like this: except the face :-)
+
+<img src="frontend_result.png" alt="frontend_result" style="zoom:33%;" />
