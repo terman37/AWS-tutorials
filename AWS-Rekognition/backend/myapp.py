@@ -70,7 +70,7 @@ def get_features_from_json(myjson):
     notusedattributes = ['BoundingBox', 'Landmarks', 'Pose', 'Quality', 'Confidence']
     if nbfaces == 1:
         face = facedetails[0]
-        mystr += '<table class="table table-striped bg-light">'
+        mystr += '<table class="table table-striped bg-light m-1">'
         for attribute, details in face.items():
             if attribute not in notusedattributes:
                 mystr += "<tr>"
