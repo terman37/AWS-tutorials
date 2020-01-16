@@ -11,8 +11,8 @@ CORS(app)  # added by me
 @app.route("/get_picture/", methods=['GET', 'POST'])
 def getpicture():
     rdata = request.get_data()
-    print(rdata)
-    image_name = 'image1.jpg'
+    myid = rdata[1]
+    image_name = 'image%d.jpg' % myid
     save_uri_as_jpeg(rdata, image_name)
     print("screenshot saved as %s" % image_name)
 
