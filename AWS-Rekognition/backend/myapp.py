@@ -14,7 +14,7 @@ def p1():
 
 @app.route("/get_picture2/", methods=['GET', 'POST'])
 def p2():
-    return getpicture(1)
+    return getpicture(2)
 
 
 def getpicture(myid):
