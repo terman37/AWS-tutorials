@@ -103,7 +103,7 @@ def AWScomparefaces():
     mystr = "<kbd> Similarity = "
     if len(FaceMatch) > 0:
         FirstMatch = FaceMatch[0]
-        mystr += "%.2f %%" % FirstMatch['Similarity']
+        mystr += "%.2f%%" % FirstMatch['Similarity']
     else:
         mystr += "No Matching face"
     mystr += "</kbd>"
@@ -124,12 +124,12 @@ def get_features_from_json(myjson):
                 if attribute == 'AgeRange':
                     mystr += "<td>%s</td><td>%d</td><td>%d yo</td>" % (attribute, details['Low'], details['High'])
                 elif attribute != "Emotions":
-                    mystr += "<td>%s</td><td>%s</td><td>%.2f</td>" % (
+                    mystr += "<td>%s</td><td>%s</td><td>%.2f%%</td>" % (
                     attribute, details['Value'], details['Confidence'])
                 else:
                     for emotion in details:
                         if emotion['Confidence'] > 50:
-                            mystr += "<td>Emotion</td><td>%s</td><td>%.2f</td>" % (
+                            mystr += "<td>Emotion</td><td>%s</td><td>%.2f%%</td>" % (
                             emotion['Type'], emotion['Confidence'])
                 mystr += "</tr>"
         mystr += "</table>"
