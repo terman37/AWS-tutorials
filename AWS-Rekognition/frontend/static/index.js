@@ -12,16 +12,12 @@ function set_webcam(){
     Webcam.attach('#my_camera');
 }
 
-function take_snapshot(destin = 'get_picture/') {
+function take_snapshot(id) {
     // take snapshot and get image data
     Webcam.snap(
         function(data_uri) {
             // display results in page
-            if(destin == 'get_picture/') {
-                $('#screenshot').html('<img src="'+data_uri+'"/>');
-            } else {
-                $('#screenshot2').html('<img src="'+data_uri+'"/>');
-            }
+            $('#screenshot'+id).html('<img src="'+data_uri+'"/>');
             $.post(
                 'http://'+backendip+':5000/'+destin,
                 data_uri,
@@ -29,12 +25,12 @@ function take_snapshot(destin = 'get_picture/') {
                 'html'
             );
             function result_f(data_back){
-                $('#results').html($.parseHTML(data_back));
+                $('#results'+id).html($.parseHTML(data_back));
             }
         }
     );
 }
 
 function rekognize() {
-    take_snapshot(destin = 'compare/')
+//    take_snapshot(destin = 'compare/')
 }
