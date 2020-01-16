@@ -67,7 +67,8 @@
   nano ~/AWS-tutorials/AWS-Rekognition/frontend/static/index.js
   ```
 
-- 
+  
+
 
 ## Setup Backend Server
 
@@ -144,7 +145,7 @@
 
 ## Test it !
 
-Test frontend access in chrome at [http://<PublicIP>](http://<PublicIP>)
+Test frontend access in chrome at [http://Frontend-PublicIP](http://<PublicIP>)
 
 should look like this: except the face :-)
 
