@@ -1,4 +1,4 @@
-var backendip = '34.238.190.11'
+var backendip = '3.215.77.208'
 
 function set_webcam(){
     Webcam.set(
