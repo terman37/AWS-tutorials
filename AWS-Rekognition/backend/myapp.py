@@ -41,7 +41,6 @@ def comparepicture():
     answer = AWScomparefaces()
     print(answer)
 
-    answer = "compare"
     return answer
 
 
@@ -101,7 +100,15 @@ def AWScomparefaces():
         QualityFilter='AUTO'
     )
 
-    return response
+    FaceMatch = response['FaceMatches']
+    mystr=""
+    if len(FaceMatch)>0:
+        FirstMatch = FaceMatch[0]
+        mystr += FirstMatch['Similarity']
+    else
+        mystr += "No Matching face"
+
+    return mystr
 
 
 def get_features_from_json(myjson):

@@ -55,11 +55,17 @@
 
   - navigate to:
 
-    [chrome://flags/#unsafely-treat-insecure-origin-as-secure](chrome://flags/#unsafely-treat-insecure-origin-as-secure)
+    chrome://flags/#unsafely-treat-insecure-origin-as-secure
 
   - enable feature and add public ip adress of frontend server
 
     <img src="chrome_webcam.png" alt="chrome_webcam" style="zoom:50%;" />
+
+- modify backend ip adress in index.js (1st line in script)
+
+  ```
+  nano ~/AWS-tutorials/AWS-Rekognition/frontend/static/index.js
+  ```
 
 - Test frontend access in chrome at [http://<PublicIP>](http://<PublicIP>)
 
@@ -98,6 +104,36 @@
   git clone https://github.com/terman37/AWS-tutorials.git
   ```
 
+- setup AWS credentials for boto3
+
+  ```
+  mkdir ~/.aws
+  ```
+  
+  ```bash
+  nano ~/.aws/credentials
+  ```
+  
+  - should look like this: copy your credentials (from vocareum in my case)
+  
+    ```
+    [default]
+    aws_access_key_id=...
+    aws_secret_access_key=...
+    aws_session_token=...
+    ```
+  
+  ```bash
+  nano ~/.aws/config
+  ```
+  
+  - should look like this:
+  
+    ```
+    [default]
+    region = us-east-1
+    ```
+
 - run Flask app
 
   ```bash
@@ -107,18 +143,3 @@
 
 
 
-
-
-TODO
-
-​	pip install boto3
-
-​	mkdir ~/.aws
-
-​	sudo nano ~/.aws/credentials
-
-​	sudo nano ~/.aws/config
-
-​	
-
-​	client = boto3.client('s3')
