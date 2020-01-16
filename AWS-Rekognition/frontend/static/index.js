@@ -34,7 +34,7 @@ function take_snapshot(id) {
 function rekognize() {
 
     var pic1 = $('#screenshot1').contents().length
-    var pic1 = $('#screenshot1').contents().length
+    var pic2 = $('#screenshot1').contents().length
 
     if(pic1>0 && pic2>0){
         $.post(
