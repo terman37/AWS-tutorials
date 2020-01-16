@@ -101,13 +101,13 @@ def AWScomparefaces():
     )
 
     FaceMatch = response['FaceMatches']
-    mystr = ""
+    mystr = "<kbd> Similarity = "
     if len(FaceMatch) > 0:
         FirstMatch = FaceMatch[0]
-        mystr += str(FirstMatch['Similarity'])
+        mystr += "%.2f" % FirstMatch['Similarity']
     else:
         mystr += "No Matching face"
-
+    mystr += "</kbd>"
     return mystr
 
 
