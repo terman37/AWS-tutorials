@@ -55,7 +55,7 @@
 
   - navigate to:
 
-    chrome://flags/#unsafely-treat-insecure-origin-as-secure
+    > chrome://flags/#unsafely-treat-insecure-origin-as-secure
 
   - enable feature and add public ip adress of frontend server
 
@@ -145,8 +145,28 @@
 
 ## Test it !
 
-Test frontend access in chrome at [http://Frontend-PublicIP](http://<PublicIP>)
+- before to launch:
 
-should look like this: except the face :-)
+  - update credentials:
+
+    ```bash
+    nano ~/.aws/credentials
+    ```
+
+  - put backent IP in index.js
+
+    ```bash
+    nano ~/AWS-tutorials/AWS-Rekognition/frontend/static/index.js
+    ```
+
+  - put frontend IP in chrome to allow webcam
+
+    > chrome://flags/#unsafely-treat-insecure-origin-as-secure
+
+
+
+- Test frontend access in chrome at [http://Frontend-PublicIP](http://<PublicIP>)
+
+  should look like this: except the face :-)
 
 <img src="frontend_result.png" alt="frontend_result" style="zoom:33%;" />
