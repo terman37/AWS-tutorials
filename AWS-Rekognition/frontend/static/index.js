@@ -4,9 +4,18 @@ var backendip = '18.207.158.88/'
 function start_page(){
     var video = document.querySelector("#webcam_live");
     if (navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: true })
-        .then(function (stream) {
-          video.srcObject = stream;
+        var constraints = { video: true }
+
+        var constraints = { audio: false,
+                            video: {
+                                width: { min: 320, ideal: 320, max: 320 },
+                                height: { min: 240, ideal: 240, max: 240 },
+                            }
+                           }
+        
+        navigator.mediaDevices.getUserMedia(constraints)
+            .then(function (stream) {
+            video.srcObject = stream;
         })
         .catch(function (err0r) {
           console.log("Something went wrong!");
