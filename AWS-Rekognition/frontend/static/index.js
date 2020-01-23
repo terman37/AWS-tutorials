@@ -61,12 +61,13 @@ function keepface(){
     canvas = document.getElementById("k0");
     context = source_canvas.getContext("2d");
     var data_uri = canvas.toDataURL();
-
-    var myjson = JSON.stringify({ image: data_uri, myid5: id5 });
+    var params = "image=" & data_uri
+    params += "&myid5=" + id5
+//    var myjson = JSON.stringify({ image: data_uri, myid5: id5 });
 
     $.post(
             'http://'+backendip+':5000/add_to_collection/',
-            myjson,
+            params,
             result_f,
             'html'
         );

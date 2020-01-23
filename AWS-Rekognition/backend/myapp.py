@@ -38,9 +38,13 @@ def reset_collection():
 
 @app.route("/add_to_collection/", methods=['GET', 'POST'])
 def add_to_collection():
-    myjson = request.get_data()
-    print("json received = ")
-    print(myjson)
+    data = request.form.get('image')
+    print("image received = ")
+    print(data)
+    id5 = request.form.get('myid5')
+    print("id5 received = ")
+    print(data)
+
     rdata = myjson['image']
     # print(rdata[:50])
     image_name = 'image_for_collection.jpg'
