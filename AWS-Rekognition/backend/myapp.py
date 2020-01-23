@@ -11,6 +11,7 @@ CORS(app)  # added by me
 @app.route("/get_picture/", methods=['GET', 'POST'])
 def getpicture():
     rdata = request.get_data()
+    print(rdata[:50])
     image_name = 'image1.jpg'
     save_uri_as_jpeg(rdata, image_name)
     # print("screenshot saved as %s" % image_name)
@@ -39,7 +40,7 @@ def reset_collection():
 def add_to_collection():
     # rdata = request.get_data()
     rdata = request.form.get("image")
-    print(rdata)
+    print(rdata[:50])
     image_name = 'image_for_collection.jpg'
     save_uri_as_jpeg(rdata, image_name)
 
@@ -51,7 +52,7 @@ def add_to_collection():
     print(collname)
 
     # add to collection / remove old one
-    id5 = request.args.get("id5")
+    id5 = request.form.get("id5")
     faceid = add_face_to_collection(collname, image_name)
 
     # check if face is in collection
