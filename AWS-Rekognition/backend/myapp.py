@@ -1,7 +1,9 @@
 from flask import Flask, request
 from flask_cors import CORS
+from flask import jsonify
 from binascii import a2b_base64
 import boto3
+
 import json
 
 app = Flask(__name__)
@@ -37,7 +39,7 @@ def getpicture():
     # TODO then manage in js
     json = {'answer': answer, 'faceid': faceid, 'similar': similarity}
 
-    return json
+    return jsonify(json)
 
 
 @app.route("/resetcollection/", methods=['GET', 'POST'])
