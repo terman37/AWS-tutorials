@@ -11,7 +11,7 @@ CORS(app)  # added by me
 @app.route("/get_picture/", methods=['GET', 'POST'])
 def getpicture():
     rdata = request.get_data()
-    print(rdata[:50])
+    # print(rdata[:50])
     image_name = 'image1.jpg'
     save_uri_as_jpeg(rdata, image_name)
     # print("screenshot saved as %s" % image_name)
@@ -40,7 +40,7 @@ def reset_collection():
 def add_to_collection():
     # rdata = request.get_data()
     rdata = request.form.get("image")
-    print(rdata[:50])
+    # print(rdata[:50])
     image_name = 'image_for_collection.jpg'
     save_uri_as_jpeg(rdata, image_name)
 
@@ -120,6 +120,7 @@ def add_face_to_collection(collname, image_name):
 def save_uri_as_jpeg(uri, imagename):
     imgData = str(uri)
     imgData64 = imgData[imgData.find(',') + 1:]
+    print(imgData64[:50])
     binary_data = a2b_base64(imgData64)
     with open(imagename, 'wb') as fd:
         fd.write(binary_data)
