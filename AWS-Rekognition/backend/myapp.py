@@ -62,10 +62,13 @@ def get_collection_id():
     )
     collid = response['CollectionIds']
     if len(collid) == 0:
+        collid = reko.create_collection(
+            CollectionId='mycollection'
+        )
         print('create collection')
     else:
         print(collid[0])
-    # print(collid)
+    print(collid)
 
 
 def save_uri_as_jpeg(uri, imagename):
