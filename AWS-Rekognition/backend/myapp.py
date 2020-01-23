@@ -29,7 +29,7 @@ def getpicture():
     collname = create_collection_if_needded()
     nbfaces = nb_of_faces_in_collection(collname)
     if nbfaces > 0:
-        matchid = find_face_in_collection(collname, image_name)
+        similarity, faceid = find_face_in_collection(collname, image_name)
 
     return answer
 
@@ -174,8 +174,14 @@ def find_face_in_collection(collname, image_name):
         FaceMatchThreshold=90,
         QualityFilter='AUTO'
     )
-    print(response)
-    return 0
+    response = response['FaceMatches']
+    response = response[0]
+    similarity = response['Similarity']
+    response = response['Face']
+    faceid = response['FaceId']
+    print(faceid)
+    print(similarity)
+    return similarity, faceid
 
 
 def AWScomparefaces():

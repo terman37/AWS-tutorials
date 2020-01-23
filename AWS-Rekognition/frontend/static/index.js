@@ -4,6 +4,7 @@ var backendip = '18.207.158.88'
 function start_page(){
     $('#btnkeep').hide();
     $('#btnresetcol').hide();
+    resetcol()
     var video = document.querySelector("#webcam_live");
     if (navigator.mediaDevices.getUserMedia) {
         var constraints = { video: true }
