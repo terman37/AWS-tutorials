@@ -33,7 +33,6 @@ function snap(){
         $('#results').html($.parseHTML(data_back));
     }
     $('#btnkeep').show();
-    $('#btnresetcol').show();
 }
 
 function keepface(){
@@ -80,7 +79,8 @@ function keepface(){
 //            console.log("k" + i + ":" + canvas.attributes.FaceId.value);
 //        }
     }
-
+    $('#btnkeep').hide();
+    $('#btnresetcol').show();
 }
 
 function resetcol(){
@@ -100,4 +100,5 @@ function resetcol(){
         context.clearRect(0, 0, 160, 120);
         canvas.setAttribute("FaceId", "0");
     }
+    $('#btnresetcol').hide();
 }
