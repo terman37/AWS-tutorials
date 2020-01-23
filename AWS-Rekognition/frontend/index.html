@@ -27,14 +27,12 @@
             <div class="row">
                 <div class="col-3 mx-1">
                     <div class="row justify-content-center m-2">
-                        <div id="my_cam_div">
-                            <video autoplay="true" id="webcam_live">
+                        <video autoplay="true" id="webcam_live">
 
-                            </video>
-                        </div>
+                        </video>
                     </div>
                     <div class="row justify-content-center m-2">
-                        <input class="btn btn-info m-1" type=button value="Take Snapshot 1" onClick="take_snapshot(1)">
+                        <input class="btn btn-info m-1" type=button value="Take Snapshot 1" onClick="snap()">
                         <input class="btn btn-info m-1" type=button value="Take Snapshot 2" onClick="take_snapshot(2)">
                         <input class="btn btn-success m-1" type=button value="Compare pics" onClick="rekognize()">
                     </div>
@@ -42,7 +40,7 @@
 
                 <div class="col-4 mx-1">
                     <div class="row justify-content-center m-2">
-                        <div id="screenshot1"></div>
+                        <canvas id="screenshot1"></canvas>
                     </div>
                     <div class="row justify-content-center m-2">
                         <div id="results1"></div>
