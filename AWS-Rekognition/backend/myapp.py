@@ -13,10 +13,8 @@ CORS(app)  # added by me
 @app.route("/get_picture/", methods=['GET', 'POST'])
 def getpicture():
     rdata = request.get_data()
-    # print(rdata[:50])
     image_name = 'image1.jpg'
     save_uri_as_jpeg(rdata, image_name)
-    # print("screenshot saved as %s" % image_name)
 
     # Upload in S3 bucket
     upload_to_S3(image_name)
@@ -43,6 +41,7 @@ def getpicture():
 
 @app.route("/resetcollection/", methods=['GET', 'POST'])
 def reset_collection():
+    # Delete collection
     reko = boto3.client('rekognition')
     response = reko.delete_collection(
         CollectionId='mycollection'
@@ -62,8 +61,8 @@ def add_to_collection():
 
     # get_collection id
     collname = create_collection_if_needded()
-    # print(collname)
 
+    # Add face to Rekognition collection
     faceid = add_face_to_collection(collname, image_name)
 
     return faceid
@@ -78,16 +77,17 @@ def comparepicture():
 
 def create_collection_if_needded():
     reko = boto3.client('rekognition')
+    # check if any collection
     response = reko.list_collections(
         MaxResults=1
     )
     collid = response['CollectionIds']
     if len(collid) == 0:
+        # if no collection found / create one
         collname = 'mycollection'
         res = reko.create_collection(
             CollectionId='mycollection'
         )
-        # print(collname + ' collection created')
     else:
         collname = collid[0]
     return collname
@@ -96,13 +96,14 @@ def create_collection_if_needded():
 def add_face_to_collection(collname, image_name):
     reko = boto3.client('rekognition')
 
-    response = reko.describe_collection(
-        CollectionId=collname
-    )
-    if response['FaceCount'] > 1:
-        response = reko.list_faces(CollectionId=collname)
-        # print(response)
+    # response = reko.describe_collection(
+    #     CollectionId=collname
+    # )
+    # if response['FaceCount'] > 1:
+    #     response = reko.list_faces(CollectionId=collname)
+    #     # print(response)
 
+    # add face to collection (only main one)
     response = reko.index_faces(
         CollectionId=collname,
         Image={
@@ -115,12 +116,13 @@ def add_face_to_collection(collname, image_name):
         MaxFaces=1,
         QualityFilter='AUTO'
     )
+
+    # send back Face Id generated
     response = response['FaceRecords']
     response = response[0]
     response = response['Face']
     response = response['FaceId']
 
-    print(response)
     return response
 
 
@@ -145,9 +147,9 @@ def upload_to_S3(imagename):
     mys3 = boto3.resource('s3')
     mybucket = mys3.Bucket('images-for-reko')
     myobject = mybucket.Object(imagename)
+    # as using always same name for file, delete old one before to add new one
     myobject.delete()
     myobject.wait_until_not_exists()
-    # print("deleted")
     myobject.upload_file(imagename)
     myobject.wait_until_exists()
     print(imagename + " uploaded")
@@ -171,20 +173,19 @@ def AWSdetect_faces(imagename):
 
 def find_face_in_collection(collname, image_name):
     reko = boto3.client('rekognition')
-    response = reko.search_faces_by_image(
-        CollectionId=collname,
-        Image={
-            'S3Object': {
-                'Bucket': 'images-for-reko',
-                'Name': image_name,
-            }
-        },
-        MaxFaces=1,
-        FaceMatchThreshold=90,
-        QualityFilter='AUTO'
-    )
-
     try:
+        response = reko.search_faces_by_image(
+            CollectionId=collname,
+            Image={
+                'S3Object': {
+                    'Bucket': 'images-for-reko',
+                    'Name': image_name,
+                }
+            },
+            MaxFaces=1,
+            FaceMatchThreshold=90,
+            QualityFilter='AUTO'
+        )
         response = response['FaceMatches']
         response = response[0]
         similarity = response['Similarity']
@@ -229,6 +230,7 @@ def AWScomparefaces():
 
 
 def get_features_from_json(myjson):
+    # create details table from json response from detect faces
     mystr = ""
     facedetails = myjson['FaceDetails']
     nbfaces = len(facedetails)
