@@ -56,11 +56,10 @@ function keepface(){
             console.log(i + "//" + err);
         }
     }
+
+    canvas = document.getElementById("k0");
     context = source_canvas.getContext("2d");
     var data_uri = canvas.toDataURL();
-
-//    var params = "image="+data_uri;
-//    params += "&id5="+id5;
 
     var myjson = JSON.stringify({ image: data_uri, myid5: id5 });
 
@@ -74,10 +73,10 @@ function keepface(){
     function result_f(data_back){
         canvas = document.getElementById("k1");
         canvas.setAttribute("FaceId", data_back);
-//        for (i = 5; i > 0; i--){
-//            canvas = document.getElementById("k"+i);
-//            console.log("k" + i + ":" + canvas.attributes.FaceId.value);
-//        }
+        for (i = 5; i > 0; i--){
+            canvas = document.getElementById("k"+i);
+            console.log("k" + i + ":" + canvas.attributes.FaceId.value);
+        }
     }
     $('#btnkeep').hide();
     $('#btnresetcol').show();
