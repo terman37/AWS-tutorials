@@ -31,6 +31,8 @@ def getpicture():
     if nbfaces > 0:
         similarity, faceid = find_face_in_collection(collname, image_name)
 
+    # TODO modify answer to send back answer + similarity + facid
+    # TODO then manage in js
     return answer
 
 @app.route("/resetcollection/", methods=['GET', 'POST'])
@@ -39,7 +41,7 @@ def reset_collection():
     response = reko.delete_collection(
         CollectionId='mycollection'
     )
-    print("Collection deleted ! ")
+    # print("Collection deleted ! ")
     return "Collection deleted ! "
 
 @app.route("/add_to_collection/", methods=['GET', 'POST'])
@@ -53,7 +55,7 @@ def add_to_collection():
 
     # get_collection id
     collname = create_collection_if_needded()
-    print(collname)
+    # print(collname)
 
     faceid = add_face_to_collection(collname, image_name)
 
@@ -77,7 +79,7 @@ def create_collection_if_needded():
         res = reko.create_collection(
             CollectionId='mycollection'
         )
-        print(collname + ' collection created')
+        # print(collname + ' collection created')
     else:
         collname = collid[0]
     return collname
@@ -126,7 +128,6 @@ def nb_of_faces_in_collection(collname):
 def save_uri_as_jpeg(uri, imagename):
     imgData = str(uri)
     imgData64 = imgData[imgData.find(',') + 1:]
-    print(imgData64[-20:])
     binary_data = a2b_base64(imgData64)
     with open(imagename, 'wb') as fd:
         fd.write(binary_data)
@@ -179,8 +180,6 @@ def find_face_in_collection(collname, image_name):
     similarity = response['Similarity']
     response = response['Face']
     faceid = response['FaceId']
-    print(faceid)
-    print(similarity)
     return similarity, faceid
 
 
