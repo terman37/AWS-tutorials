@@ -33,9 +33,9 @@
                 <div class="col-3 mx-1">
                     <div class="row justify-content-center m-2">
                         <div id="my_cam_div">
-                            <canvas id="my_camera" width="320" height="240">
+                            <video autoplay="true" id="videoElement">
 
-                            </canvas>
+                            </video>
                         </div>
                     </div>
                     <div class="row justify-content-center m-2">
@@ -65,7 +65,18 @@
             </div>
         </div>
 		<script language="JavaScript">
-			 set_webcam()
+		var video = document.querySelector("#videoElement");
+
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
+			 //set_webcam()
 		</script>
         <script>
     </body>

@@ -10,6 +10,9 @@ function set_webcam(){
             jpeg_quality: 90
         }
      );
+
+     context.drawImage(video, 0, 0, 640, 480)
+
     Webcam.attach('#my_camera');
 }
 
