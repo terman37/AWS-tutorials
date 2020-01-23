@@ -12,7 +12,7 @@ def getpicture():
     rdata = request.get_data()
     image_name = 'image1.jpg'
     save_uri_as_jpeg(rdata, image_name)
-    print("screenshot saved as %s" % image_name)
+    # print("screenshot saved as %s" % image_name)
 
     # Upload in S3 bucket
     upload_to_S3(image_name)
@@ -25,12 +25,39 @@ def getpicture():
 
     return answer
 
+@app.route("/add_to_collection/", methods=['GET', 'POST'])
+def add_to_collection():
+    # rdata = request.get_data()
+    # image_name = 'image_for_collection.jpg'
+    # save_uri_as_jpeg(rdata, image_name)
+
+    # Upload in S3 bucket
+    # upload_to_S3(image_name)
+
+    # get_collection id
+    get_collection_id()
+
+    # add to collection / remove old one
+
+    # check if face is in collection
+
+    # parse json and return values to client
+
+    return "html"
+
 
 @app.route("/compare/", methods=['GET', 'POST'])
 def comparepicture():
     answer = AWScomparefaces()
     print(answer)
     return answer
+
+def get_collection_id():
+    reko = boto3.client('rekognition')
+    response = reko.list_collections(
+        MaxResults=1
+    )
+    print(response)
 
 
 def save_uri_as_jpeg(uri, imagename):
@@ -47,10 +74,10 @@ def upload_to_S3(imagename):
     myobject = mybucket.Object(imagename)
     myobject.delete()
     myobject.wait_until_not_exists()
-    print("deleted")
+    # print("deleted")
     myobject.upload_file(imagename)
     myobject.wait_until_exists()
-    print("uploaded")
+    print(imagename + "uploaded")
 
 
 def AWSdetect_faces(imagename):

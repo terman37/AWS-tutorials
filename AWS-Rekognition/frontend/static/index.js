@@ -43,7 +43,17 @@ function keepface(){
         } catch(err) {
             console.log(err)
         }
-
+    }
+    context = source_canvas.getContext("2d");
+    var data_uri = canvas.toDataURL();
+    $.post(
+            'http://'+backendip+':5000/add_to_collection/',
+            data_uri,
+            result_f,
+            'html'
+        );
+    function result_f(data_back){
+        console.log(data_back)
     }
 
 
