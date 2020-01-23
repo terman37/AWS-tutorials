@@ -36,9 +36,10 @@ def getpicture():
         if nbfaces > 0:
             similarity, faceid = find_face_in_collection(collname, image_name)
 
-    json = {'answer': answer, 'faceid': faceid, 'similar': round(similarity,2)}
+    json = {'answer': answer, 'faceid': faceid, 'similar': round(similarity, 2), 'nbfaces': nbfaces}
 
     return jsonify(json)
+
 
 @app.route("/resetcollection/", methods=['GET', 'POST'])
 def reset_collection():
