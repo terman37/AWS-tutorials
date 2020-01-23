@@ -35,7 +35,7 @@ function snap(){
 function keepface(){
     var canvas;
     for (i = 5; i > 0; i--){
-        canvas = $('k'+i);
+        canvas = document.getElementById("k"+i);
         context = canvas.getContext("2d");
         context.drawImage($('k'+(i-1)), 0, 0,320,240);
     }
