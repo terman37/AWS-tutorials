@@ -41,7 +41,7 @@ def add_to_collection():
     print(collname)
 
     # add to collection / remove old one
-    add_face_to_collection(collname, image_name)
+    faceid = add_face_to_collection(collname, image_name)
 
     # check if face is in collection
 
@@ -102,7 +102,7 @@ def add_face_to_collection(collname, image_name):
     response = response['FaceId']
 
     print(response)
-    # return True
+    return response
 
 
 def save_uri_as_jpeg(uri, imagename):
