@@ -7,6 +7,7 @@ import json
 app = Flask(__name__)
 CORS(app)  # added by me
 
+
 @app.route("/get_picture/", methods=['GET', 'POST'])
 def getpicture():
     rdata = request.get_data()
@@ -24,6 +25,7 @@ def getpicture():
     answer = get_features_from_json(myjson)
 
     return answer
+
 
 @app.route("/add_to_collection/", methods=['GET', 'POST'])
 def add_to_collection():
@@ -52,12 +54,18 @@ def comparepicture():
     print(answer)
     return answer
 
+
 def get_collection_id():
     reko = boto3.client('rekognition')
     response = reko.list_collections(
         MaxResults=1
     )
-    print(response)
+    collid = response['CollectionIds']
+    if len(collid) == 0:
+        print('create collection')
+    else:
+        print(collid[0])
+    # print(collid)
 
 
 def save_uri_as_jpeg(uri, imagename):
@@ -142,12 +150,12 @@ def get_features_from_json(myjson):
                     mystr += "<td>%s</td><td>%d</td><td>%d yo</td>" % (attribute, details['Low'], details['High'])
                 elif attribute != "Emotions":
                     mystr += "<td>%s</td><td>%s</td><td>%.2f%%</td>" % (
-                    attribute, details['Value'], details['Confidence'])
+                        attribute, details['Value'], details['Confidence'])
                 else:
                     for emotion in details:
                         if emotion['Confidence'] > 50:
                             mystr += "<td>Emotion</td><td>%s</td><td>%.2f%%</td>" % (
-                            emotion['Type'], emotion['Confidence'])
+                                emotion['Type'], emotion['Confidence'])
                 mystr += "</tr>"
         mystr += "</table>"
     elif nbfaces > 1:
