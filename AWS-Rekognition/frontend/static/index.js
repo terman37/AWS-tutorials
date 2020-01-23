@@ -19,6 +19,7 @@ function start_page(){
 }
 
 function snap(){
+    $('#btnkeep').hide();
     var canvas = document.getElementById("k0");
 	context = canvas.getContext("2d");
 	video = document.getElementById("webcam_live");
