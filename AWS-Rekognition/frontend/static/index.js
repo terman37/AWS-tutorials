@@ -6,13 +6,13 @@ function start_page(){
     if (navigator.mediaDevices.getUserMedia) {
         var constraints = { video: true }
 
-        var constraints = { audio: false,
-                            video: {
-                                width: { min: 320, ideal: 320, max: 320 },
-                                height: { min: 240, ideal: 240, max: 240 },
-                            }
-                           }
-        
+//        var constraints = { audio: false,
+//                            video: {
+//                                width: { min: 320, ideal: 320, max: 320 },
+//                                height: { min: 240, ideal: 240, max: 240 },
+//                            }
+//                           }
+
         navigator.mediaDevices.getUserMedia(constraints)
             .then(function (stream) {
             video.srcObject = stream;
@@ -27,7 +27,7 @@ function snap(){
     var canvas = document.getElementById("screenshot1");
 	context = canvas.getContext("2d");
 	video = document.getElementById("webcam_live");
-    context.drawImage(video, 0, 0, 320, 240);
+    context.drawImage(video, 0, 0, 640, 480);
     $('#video').fadeOut('slow');
 //    $('#canvas').fadeIn('slow');
 //    $('#snap').hide();
