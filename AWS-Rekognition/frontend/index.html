@@ -11,7 +11,7 @@
 
     <body>
 
-		<script type="text/javascript" src="static/webcam.min.js"></script>
+<!--		<script type="text/javascript" src="static/webcam.min.js"></script>-->
         <script type="text/javascript" src="static/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="static/bootstrap.min.js"></script>
 		<script src="static/index.js"></script>
@@ -20,44 +20,110 @@
             <div class="row bg-primary ">
                 <div class="mx-auto h3"> AWS Rekognition Test </div>
             </div>
-            <div class="row justify-content-end">
-                <div id="compare" class="mx-auto h2"></div>
-            </div>
-            <div class="row">
-                <div class="col-3 mx-1">
-                    <div class="row justify-content-center m-2">
-                        <div id="my_camera"></div>
-                    </div>
-                    <div class="row justify-content-center m-2">
-                        <input class="btn btn-info m-1" type=button value="Take Snapshot 1" onClick="take_snapshot(1)">
-                        <input class="btn btn-info m-1" type=button value="Take Snapshot 2" onClick="take_snapshot(2)">
-                        <input class="btn btn-success m-1" type=button value="Compare pics" onClick="rekognize()">
-                    </div>
-                </div>
+            <video id="video" autoplay></video>
+            <button id="snap">Capture</button>
+            <button id="new">New</button>
+            <canvas id="canvas" width="640" height="480"></canvas>
+            <button id="upload">Upload</button>
 
-                <div class="col-4 mx-1">
-                    <div class="row justify-content-center m-2">
-                        <div id="screenshot1"></div>
-                    </div>
-                    <div class="row justify-content-center m-2">
-                        <div id="results1"></div>
-                    </div>
-                </div>
+<!--            <div class="row justify-content-end">-->
+<!--                <div id="compare" class="mx-auto h2"></div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--                <div class="col-3 mx-1">-->
+<!--                    <div class="row justify-content-center m-2">-->
+<!--                        <div id="my_camera"></div>-->
+<!--                    </div>-->
+<!--                    <div class="row justify-content-center m-2">-->
+<!--                        <input class="btn btn-info m-1" type=button value="Take Snapshot 1" onClick="take_snapshot(1)">-->
+<!--                        <input class="btn btn-info m-1" type=button value="Take Snapshot 2" onClick="take_snapshot(2)">-->
+<!--                        <input class="btn btn-success m-1" type=button value="Compare pics" onClick="rekognize()">-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <div class="col-4 mx-1">
-                    <div class="row justify-content-center m-2">
-                        <div id="screenshot2"></div>
-                    </div>
-                    <div class="row justify-content-center m-2">
-                        <div id="results2"></div>
-                    </div>
-                </div>
+<!--                <div class="col-4 mx-1">-->
+<!--                    <div class="row justify-content-center m-2">-->
+<!--                        <div id="screenshot1"></div>-->
+<!--                    </div>-->
+<!--                    <div class="row justify-content-center m-2">-->
+<!--                        <div id="results1"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-            </div>
+<!--                <div class="col-4 mx-1">-->
+<!--                    <div class="row justify-content-center m-2">-->
+<!--                        <div id="screenshot2"></div>-->
+<!--                    </div>-->
+<!--                    <div class="row justify-content-center m-2">-->
+<!--                        <div id="results2"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
-		<script language="JavaScript">
-			 set_webcam()
-		</script>
-
+<!--		<script language="JavaScript">-->
+<!--			 set_webcam()-->
+<!--		</script>-->
+        <script>
+            // Put event listeners into place
+            window.addEventListener("DOMContentLoaded", function() {
+            // Grab elements, create settings, etc.
+            var canvas = document.getElementById("canvas"),
+            context = canvas.getContext("2d"),
+            video = document.getElementById("video"),
+            videoObj = { "video": true },
+            errBack = function(error) {
+                console.log("Video capture error: ", error.code);
+            };
+            // Put video listeners into place
+            if(navigator.getUserMedia) { // Standard
+                navigator.getUserMedia(videoObj, function(stream) {
+                    video.src = stream;
+                    video.play();
+                }, errBack);
+                } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+                navigator.webkitGetUserMedia(videoObj, function(stream){
+                    video.src = window.webkitURL.createObjectURL(stream);
+                    video.play();
+                }, errBack);
+                } else if(navigator.mozGetUserMedia) { // WebKit-prefixed
+                navigator.mozGetUserMedia(videoObj, function(stream){
+                    video.src = window.URL.createObjectURL(stream);
+                    video.play();
+                }, errBack);
+            }
+            // Trigger photo take
+            document.getElementById("snap").addEventListener("click", function() {
+                context.drawImage(video, 0, 0, 640, 480);
+                // Littel effects
+                $('#video').fadeOut('slow');
+                $('#canvas').fadeIn('slow');
+                $('#snap').hide();
+                $('#new').show();
+                // Allso show upload button
+                //$('#upload').show();
+            });
+            // Capture New Photo
+            document.getElementById("new").addEventListener("click", function() {
+                $('#video').fadeIn('slow');
+                $('#canvas').fadeOut('slow');
+                $('#snap').show();
+                $('#new').hide();
+            });
+            // Upload image to sever
+            document.getElementById("upload").addEventListener("click", function(){
+                var dataUrl = canvas.toDataURL();
+                $.ajax({
+                    type: "POST",
+                    url: "camsave.php",
+                    data: {
+                        imgBase64: dataUrl
+                    }
+                    }).done(function(msg) {
+                    console.log('saved');
+                    // Do Any thing you want
+                });
+            });
+        }, false);
+        </script>
     </body>
 </html>
