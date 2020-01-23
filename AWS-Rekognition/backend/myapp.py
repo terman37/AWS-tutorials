@@ -26,10 +26,16 @@ def getpicture():
 
     return answer
 
+@app.route("/resetcollection/", methods=['GET', 'POST'])
+def reset_collection():
+
+
+
 
 @app.route("/add_to_collection/", methods=['GET', 'POST'])
 def add_to_collection():
-    rdata = request.get_data()
+    # rdata = request.get_data()
+    rdata = request.args.get("image")
     image_name = 'image_for_collection.jpg'
     save_uri_as_jpeg(rdata, image_name)
 
@@ -41,6 +47,7 @@ def add_to_collection():
     print(collname)
 
     # add to collection / remove old one
+    id5 = request.args.get("id5")
     faceid = add_face_to_collection(collname, image_name)
 
     # check if face is in collection
@@ -55,7 +62,11 @@ def comparepicture():
     answer = AWScomparefaces()
     print(answer)
     return answer
-
+    reko = boto3.client('rekognition')
+    response = reko.delete_collection(
+        CollectionId='mycollection'
+    )
+    return True
 
 def create_collection_if_needded():
     reko = boto3.client('rekognition')
