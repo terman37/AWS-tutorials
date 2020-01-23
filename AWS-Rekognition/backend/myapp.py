@@ -28,12 +28,17 @@ def getpicture():
     # check if face is found in collection
     collname = create_collection_if_needded()
     nbfaces = nb_of_faces_in_collection(collname)
+    similarity = 0
+    faceid = '-'
     if nbfaces > 0:
         similarity, faceid = find_face_in_collection(collname, image_name)
 
     # TODO modify answer to send back answer + similarity + facid
     # TODO then manage in js
-    return answer
+    json = {'answer': answer, 'faceid': faceid, 'similar': similarity}
+
+    return json
+
 
 @app.route("/resetcollection/", methods=['GET', 'POST'])
 def reset_collection():
@@ -43,6 +48,7 @@ def reset_collection():
     )
     # print("Collection deleted ! ")
     return "Collection deleted ! "
+
 
 @app.route("/add_to_collection/", methods=['GET', 'POST'])
 def add_to_collection():
@@ -60,6 +66,7 @@ def add_to_collection():
     faceid = add_face_to_collection(collname, image_name)
 
     return faceid
+
 
 @app.route("/compare/", methods=['GET', 'POST'])
 def comparepicture():
