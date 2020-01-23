@@ -28,9 +28,11 @@ def getpicture():
 
 @app.route("/resetcollection/", methods=['GET', 'POST'])
 def reset_collection():
-
-
-
+    reko = boto3.client('rekognition')
+    response = reko.delete_collection(
+        CollectionId='mycollection'
+    )
+    return True
 
 @app.route("/add_to_collection/", methods=['GET', 'POST'])
 def add_to_collection():
@@ -62,11 +64,7 @@ def comparepicture():
     answer = AWScomparefaces()
     print(answer)
     return answer
-    reko = boto3.client('rekognition')
-    response = reko.delete_collection(
-        CollectionId='mycollection'
-    )
-    return True
+
 
 def create_collection_if_needded():
     reko = boto3.client('rekognition')
@@ -133,7 +131,7 @@ def upload_to_S3(imagename):
     # print("deleted")
     myobject.upload_file(imagename)
     myobject.wait_until_exists()
-    print(imagename + " uploaded")
+    print(imagename + "uploaded")
 
 
 def AWSdetect_faces(imagename):
