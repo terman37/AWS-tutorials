@@ -53,7 +53,8 @@ function keepface(){
             'html'
         );
     function result_f(data_back){
-        source_canvas.set_attribute("FaceId", data_back)
+        canvas = document.getElementById("k1");
+        source_canvas.setAttribute("FaceId", data_back)
     }
 
 
