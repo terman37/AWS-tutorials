@@ -43,8 +43,10 @@ def add_to_collection():
     print(data)
     id5 = request.form.get('myid5')
     print("id5 received = ")
+    print(id5)
+    data = request.get_data()
+    print("data received = ")
     print(data)
-
     # rdata = myjson['image']
     # # print(rdata[:50])
     # image_name = 'image_for_collection.jpg'
