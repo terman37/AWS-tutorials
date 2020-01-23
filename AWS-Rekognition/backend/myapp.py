@@ -26,9 +26,10 @@ def getpicture():
     answer = get_features_from_json(myjson)
 
     # check if face is found in collection
-    nbfaces = nb_of_faces_in_collection('mycollection')
+    collname = create_collection_if_needded()
+    nbfaces = nb_of_faces_in_collection(collname)
     if nbfaces > 0:
-        matchid = find_face_in_collection('mycollection', image_name)
+        matchid = find_face_in_collection(collname, image_name)
 
     return answer
 
