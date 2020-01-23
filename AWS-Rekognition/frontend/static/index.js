@@ -31,8 +31,9 @@ function snap(){
         );
     function result_f(data_back){
         $('#results').html($.parseHTML(data_back));
+        $('#btnkeep').show();
     }
-    $('#btnkeep').show();
+
 }
 
 function keepface(){
@@ -77,9 +78,10 @@ function keepface(){
             canvas = document.getElementById("k"+i);
             console.log("k" + i + ":" + canvas.attributes.FaceId.value);
         }
+        $('#btnkeep').hide();
+        $('#btnresetcol').show();
     }
-    $('#btnkeep').hide();
-    $('#btnresetcol').show();
+
 }
 
 function resetcol(){
@@ -92,6 +94,7 @@ function resetcol(){
         );
     function result_f(data_back){
         console.log(data_back)
+        $('#btnresetcol').hide();
     }
     for (i = 5; i > 0; i--){
         canvas = document.getElementById("k"+i);
@@ -99,5 +102,5 @@ function resetcol(){
         context.clearRect(0, 0, 160, 120);
         canvas.setAttribute("FaceId", "0");
     }
-    $('#btnresetcol').hide();
+
 }
