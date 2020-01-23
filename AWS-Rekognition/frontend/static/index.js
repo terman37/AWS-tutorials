@@ -17,7 +17,7 @@ function start_page(){
 function snap(){
     var canvas = document.getElementById("screenshot1");
 	context = canvas.getContext("2d");
-	video = document.getElementById("video");
+	video = document.getElementById("webcam_live");
     context.drawImage(video, 0, 0, 320, 240);
     $('#video').fadeOut('slow');
 //    $('#canvas').fadeIn('slow');
