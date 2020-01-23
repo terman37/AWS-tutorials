@@ -31,7 +31,12 @@ function snap(){
         );
     function result_f(data_back){
         $('#results').html($.parseHTML(data_back));
-        $('#btnkeep').show();
+        canvas = document.getElementById("k5");
+        if (canvas.attributes.FaceId.value != 0){
+
+        } else {
+            $('#btnkeep').show();
+        }
     }
 
 }
@@ -76,6 +81,7 @@ function keepface(){
             canvas = document.getElementById("k"+i);
             console.log("k" + i + ":" + canvas.attributes.FaceId.value);
         }
+
         $('#btnkeep').hide();
         $('#btnresetcol').show();
     }
