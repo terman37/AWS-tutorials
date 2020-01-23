@@ -63,10 +63,9 @@ function keepface(){
 
     $.post(
             'http://'+backendip+':5000/add_to_collection/',
-            dataType: "json",
+            "json",
             myjson,
-            result_f,
-            'html'
+            result_f
         );
     function result_f(data_back){
         canvas = document.getElementById("k1");
