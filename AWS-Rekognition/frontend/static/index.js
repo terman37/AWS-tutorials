@@ -77,10 +77,14 @@ function keepface(){
     function result_f(data_back){
         canvas = document.getElementById("k1");
         canvas.setAttribute("FaceId", data_back);
-        for (i = 5; i > 0; i--){
-            canvas = document.getElementById("k"+i);
-            console.log("k" + i + ":" + canvas.attributes.FaceId.value);
-        }
+//        for (i = 5; i > 0; i--){
+//            canvas = document.getElementById("k"+i);
+//            console.log("k" + i + ":" + canvas.attributes.FaceId.value);
+//        }
+        canvas = document.getElementById("k0");
+        context = canvas.getContext("2d");
+        context.clearRect(0, 0, 320, 240);
+        canvas.setAttribute("FaceId", "0");
 
         $('#btnkeep').hide();
         $('#btnresetcol').show();
