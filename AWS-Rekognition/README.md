@@ -5,10 +5,10 @@
 ## Use case:
 
 - html webpage to take a picture using webcam
-
 - upload picture to S3 bucket
 - use facial analysis to extract attributes from pictures (show it)
-- use face comparison to compare with previous image and check if same face is on picture
+- keep up to 5 pictures in collection
+- check for each screenshot if it exists in collection
 
 
 
@@ -162,6 +162,15 @@
   - put frontend IP in chrome to allow webcam
 
     > chrome://flags/#unsafely-treat-insecure-origin-as-secure
+  
+  - do not forget to launch Flask test server
+  
+    ```
+    conda activate flask
+    python ~/AWS-tutorials/AWS-Rekognition/backend/myapp.py
+    ```
+  
+    
 
 
 
