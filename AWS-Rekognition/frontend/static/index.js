@@ -42,7 +42,7 @@ function keepface(){
             canvas = document.getElementById("k"+i);
             context = canvas.getContext("2d");
             context.drawImage(source_canvas, 0, 0,160,120);
-            canvas.setAttribute("FaceId", source_canvas.attributes.FaceId)
+            canvas.setAttribute("FaceId", source_canvas.attributes.FaceId.value)
         } catch(err) {
             console.log(err)
         }
