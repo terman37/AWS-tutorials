@@ -38,10 +38,10 @@ def reset_collection():
 
 @app.route("/add_to_collection/", methods=['GET', 'POST'])
 def add_to_collection():
-    data = request.form.get('image')
+    data = request.args.get('image')
     print("image received = ")
     print(data)
-    id5 = request.form.get('myid5')
+    id5 = request.args.get('myid5')
     print("id5 received = ")
     print(id5)
     data = request.get_data()
