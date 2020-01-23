@@ -28,6 +28,6 @@ function snap(){
             'html'
         );
     function result_f(data_back){
-        $('#results'+id).html($.parseHTML(data_back));
+        $('#results').html($.parseHTML(data_back));
     }
 }
