@@ -48,9 +48,13 @@ function keepface(){
             if (i==5){
                 id5 = source_canvas.attributes.FaceId.value;
             }
-            canvas.setAttribute("FaceId", source_canvas.attributes.FaceId.value);
+            try{
+                canvas.setAttribute("FaceId", source_canvas.attributes.FaceId.value);
+            } catch(err) {
+                console.log(i + "//" + err)
+            }
         } catch(err) {
-            console.log(err);
+            console.log(i + "//" + err);
         }
     }
     context = source_canvas.getContext("2d");
@@ -92,6 +96,7 @@ function resetcol(){
     }
     for (i = 5; i > 0; i--){
         canvas = document.getElementById("k"+i);
+        context = canvas.getContext("2d");
         context.clearRect(0, 0, 160, 120);
         canvas.setAttribute("FaceId", "0");
     }

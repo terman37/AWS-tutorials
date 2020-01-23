@@ -136,7 +136,7 @@ def upload_to_S3(imagename):
     # print("deleted")
     myobject.upload_file(imagename)
     myobject.wait_until_exists()
-    print(imagename + "uploaded")
+    print(imagename + " uploaded")
 
 
 def AWSdetect_faces(imagename):
