@@ -172,8 +172,6 @@
   
     
 
-
-
 - Test frontend access in chrome at [http://Frontend-PublicIP](http://<PublicIP>)
 
   should look like this: except the face :-)
