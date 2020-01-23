@@ -61,20 +61,12 @@ function keepface(){
 
     var myjson = JSON.stringify({ image: data_uri, myid5: id5 });
 
-//    $.post(
-//            'http://'+backendip+':5000/add_to_collection/',
-//            "json",
-//            myjson,
-//            result_f
-//        );
-
-    $.ajax({
-          type: "POST",
-          url: 'http://'+backendip+':5000/add_to_collection/',
-          data: myjson,
-          success: result_f,
-          dataType: "html"
-        });
+    $.post(
+            'http://'+backendip+':5000/get_picture/',
+            myjson,
+            result_f,
+            'html'
+        );
 
     function result_f(data_back){
         canvas = document.getElementById("k1");
