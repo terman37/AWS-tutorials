@@ -82,7 +82,7 @@ def add_face_to_collection(collname, image_name):
     )
     if response['FaceCount'] > 1:
         response = reko.list_faces(CollectionId=collname)
-        print(response)
+        # print(response)
 
     response = reko.index_faces(
         CollectionId=collname,
@@ -96,7 +96,12 @@ def add_face_to_collection(collname, image_name):
         MaxFaces=1,
         QualityFilter='AUTO'
     )
-    # print(response)
+    response = response['FaceRecords']
+    response = response[0]
+    response = response['Face']
+    response = response['FaceId']
+
+    print(response)
     # return True
 
 
