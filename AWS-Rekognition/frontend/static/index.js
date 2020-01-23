@@ -31,9 +31,7 @@ function snap(){
             'json'
         );
     function result_f(data_back){
-        console.log(data_back.answer)
-        data=JSON.parse(data_back);
-        $('#results').html($.parseHTML(data.answer));
+        $('#results').html($.parseHTML(data_back.answer));
         canvas = document.getElementById("k5");
         if (canvas.attributes.FaceId.value != 0){
             $('#results').prepend("<p>Not possible to add more faces  --> Reset Collection</p>");
