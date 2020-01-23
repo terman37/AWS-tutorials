@@ -25,22 +25,20 @@ def getpicture():
     myjson = AWSdetect_faces(image_name)
 
     # Extract Json infos
-    answer = get_features_from_json(myjson)
+    nbfaces, answer = get_features_from_json(myjson)
 
     # check if face is found in collection
-    collname = create_collection_if_needded()
-    nbfaces = nb_of_faces_in_collection(collname)
     similarity = 0
     faceid = '-'
     if nbfaces > 0:
-        similarity, faceid = find_face_in_collection(collname, image_name)
+        collname = create_collection_if_needded()
+        nbfaces = nb_of_faces_in_collection(collname)
+        if nbfaces > 0:
+            similarity, faceid = find_face_in_collection(collname, image_name)
 
-    # TODO modify answer to send back answer + similarity + facid
-    # TODO then manage in js
     json = {'answer': answer, 'faceid': faceid, 'similar': round(similarity,2)}
 
     return jsonify(json)
-
 
 @app.route("/resetcollection/", methods=['GET', 'POST'])
 def reset_collection():
@@ -250,7 +248,7 @@ def get_features_from_json(myjson):
         mystr += "%d faces found on picture...\n" % len(facedetails)
     else:
         mystr += "Nobody on picture...\n"
-    return mystr
+    return nbfaces, mystr
 
 
 if __name__ == "__main__":
