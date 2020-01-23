@@ -36,9 +36,10 @@ function keepface(){
     var canvas;
     for (i = 5; i > 0; i--){
         try {
+            source_canvas = document.getElementById("k"+(i-1));
             canvas = document.getElementById("k"+i);
             context = canvas.getContext("2d");
-            context.drawImage($('k'+(i-1)), 0, 0,320,240);
+            context.drawImage(source_canvas, 0, 0);
         } catch(err) {
             console.log(err)
         }
