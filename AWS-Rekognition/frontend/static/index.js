@@ -33,7 +33,7 @@ function snap(){
         $('#results').html($.parseHTML(data_back));
         canvas = document.getElementById("k5");
         if (canvas.attributes.FaceId.value != 0){
-
+            $('#results').prepend("<p>Not possible to add more faces</p>");
         } else {
             $('#btnkeep').show();
         }
