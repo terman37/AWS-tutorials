@@ -66,8 +66,8 @@ def add_to_collection():
 
     # parse json and return values to client
 
-    return faceid
-
+    # return faceid
+    return 'toto'
 
 @app.route("/compare/", methods=['GET', 'POST'])
 def comparepicture():
