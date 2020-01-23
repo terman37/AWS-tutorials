@@ -47,7 +47,7 @@ def add_to_collection():
 
     # parse json and return values to client
 
-    return "html"
+    return faceid
 
 
 @app.route("/compare/", methods=['GET', 'POST'])
