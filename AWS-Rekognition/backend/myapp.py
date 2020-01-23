@@ -37,7 +37,7 @@ def getpicture():
 
     # TODO modify answer to send back answer + similarity + facid
     # TODO then manage in js
-    json = {'answer': answer, 'faceid': faceid, 'similar': similarity}
+    json = {'answer': answer, 'faceid': faceid, 'similar': round(similarity,2)}
 
     return jsonify(json)
 
