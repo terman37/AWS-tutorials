@@ -193,7 +193,7 @@ def find_face_in_collection(collname, image_name):
     except:
         similarity = 0
         faceid = 0
-        
+
     return similarity, faceid
 
 

@@ -55,7 +55,9 @@ function snap(){
         if (canvas.attributes.FaceId.value != 0){
             $('#results').prepend("<p>Not possible to add more faces  --> Reset Collection</p>");
         } else {
-            $('#btnkeep').show();
+            if (data_back.similar == 0){
+                $('#btnkeep').show();
+            }
         }
     }
 
