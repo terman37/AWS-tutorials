@@ -1,5 +1,5 @@
 
-var backendip = '18.207.158.88/'
+var backendip = '18.207.158.88'
 
 function start_page(){
     var video = document.querySelector("#webcam_live");
