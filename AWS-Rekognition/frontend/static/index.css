@@ -4,3 +4,10 @@
 	height: 240px;
 	background-color: #666;
 }
+
+#my_cam_div {
+    margin: 0px auto;
+	width: 500px;
+	height: 375px;
+	border: 10px #333 solid;
+}
