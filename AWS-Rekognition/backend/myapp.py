@@ -25,6 +25,11 @@ def getpicture():
     # Extract Json infos
     answer = get_features_from_json(myjson)
 
+    # check if face is found in collection
+    nbfaces = nb_of_faces_in_collection('mycollection')
+    if nbfaces > 0:
+        matchid = find_face_in_collection('mycollection', image_name)
+
     return answer
 
 @app.route("/resetcollection/", methods=['GET', 'POST'])
@@ -50,12 +55,6 @@ def add_to_collection():
     print(collname)
 
     faceid = add_face_to_collection(collname, image_name)
-
-    facesnb = nb_of_faces_in_collection(collname)
-    print(facesnb)
-    # check if face is in collection
-    #
-    # parse json and return values to client
 
     return faceid
 
@@ -158,6 +157,24 @@ def AWSdetect_faces(imagename):
         ]
     )
     return response
+
+
+def find_face_in_collection(collname, image_name):
+    reko = boto3.client('rekognition')
+    response = reko.search_faces_by_image(
+        CollectionId=collname,
+        Image={
+            'S3Object': {
+                'Bucket': 'images-for-reko',
+                'Name': image_name,
+            }
+        },
+        MaxFaces=1,
+        FaceMatchThreshold=90,
+        QualityFilter='AUTO'
+    )
+    print(response)
+    return 0
 
 
 def AWScomparefaces():
