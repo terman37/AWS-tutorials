@@ -38,38 +38,26 @@ def reset_collection():
 
 @app.route("/add_to_collection/", methods=['GET', 'POST'])
 def add_to_collection():
-    data = request.args.get('image')
-    print("image received = ")
-    print(data)
-    id5 = request.args.get('myid5')
-    print("id5 received = ")
-    print(id5)
-    data = request.get_data()
-    print("data received = ")
-    print(data)
-    # rdata = myjson['image']
-    # # print(rdata[:50])
-    # image_name = 'image_for_collection.jpg'
-    # save_uri_as_jpeg(rdata, image_name)
-    #
-    # # Upload in S3 bucket
-    # upload_to_S3(image_name)
-    #
-    # # get_collection id
-    # collname = create_collection_if_needded()
-    # print(collname)
-    #
-    # # add to collection / remove old one
-    # id5 = myjson['myid5']
-    # print("id5" + str(id5))
-    # faceid = add_face_to_collection(collname, image_name)
+    rdata = request.get_data()
+    image_name = 'image_for_collection.jpg'
+    save_uri_as_jpeg(rdata, image_name)
 
+    # Upload in S3 bucket
+    upload_to_S3(image_name)
+
+    # get_collection id
+    collname = create_collection_if_needded()
+    print(collname)
+
+    faceid = add_face_to_collection(collname, image_name)
+
+    facesnb = nb_of_faces_in_collection(collname)
+    print(facesnb)
     # check if face is in collection
-
+    #
     # parse json and return values to client
 
-    # return faceid
-    return 'toto'
+    return faceid
 
 @app.route("/compare/", methods=['GET', 'POST'])
 def comparepicture():
@@ -124,6 +112,15 @@ def add_face_to_collection(collname, image_name):
 
     print(response)
     return response
+
+
+def nb_of_faces_in_collection(collname):
+    reko = boto3.client('rekognition')
+
+    response = reko.describe_collection(
+        CollectionId=collname
+    )
+    return response['FaceCount']
 
 
 def save_uri_as_jpeg(uri, imagename):
