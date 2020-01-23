@@ -10,8 +10,6 @@
     </head>
 
     <body>
-
-		<script type="text/javascript" src="static/webcam.min.js"></script>
         <script type="text/javascript" src="static/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="static/bootstrap.min.js"></script>
 		<script src="static/index.js"></script>
@@ -20,43 +18,60 @@
             <div class="row bg-primary ">
                 <div class="mx-auto h3"> AWS Rekognition Test </div>
             </div>
-            <div class="row justify-content-end">
-                <div id="compare" class="mx-auto h2"></div>
-            </div>
+
             <div class="row">
-                <div class="col-3 mx-1">
+                <div class="col-lg-4 mx-1">
                     <div class="row justify-content-center m-2">
-                        <div id="my_camera"></div>
+                        <video autoplay="true" id="webcam_live" width="320" height="240"></video>
                     </div>
                     <div class="row justify-content-center m-2">
-                        <input class="btn btn-info m-1" type=button value="Take Snapshot 1" onClick="take_snapshot(1)">
-                        <input class="btn btn-info m-1" type=button value="Take Snapshot 2" onClick="take_snapshot(2)">
-                        <input class="btn btn-success m-1" type=button value="Compare pics" onClick="rekognize()">
-                    </div>
-                </div>
-
-                <div class="col-4 mx-1">
-                    <div class="row justify-content-center m-2">
-                        <div id="screenshot1"></div>
-                    </div>
-                    <div class="row justify-content-center m-2">
-                        <div id="results1"></div>
+                        <input class="btn btn-info m-1" type=button value="Take Snapshot" onClick="snap()">
+                        <input id="btnresetcol" class="btn btn-danger m-1" type=button value="Reset Collection" onClick="resetcol()">
                     </div>
                 </div>
 
-                <div class="col-4 mx-1">
+                <div class="col-lg-4 mx-1">
                     <div class="row justify-content-center m-2">
-                        <div id="screenshot2"></div>
+                        <canvas id="k0" width="320" height="240" FaceId="0"></canvas>
                     </div>
                     <div class="row justify-content-center m-2">
-                        <div id="results2"></div>
+                        <input id="btnkeep" class="btn btn-success m-1" type=button value="Keep Face" onClick="keepface()">
                     </div>
                 </div>
 
+                <div class="col-lg-3 mx-1">
+                    <div class="row justify-content-center m-2">
+                        <div id="results"></div>
+                    </div>
+                </div>
             </div>
+
+            <div class="row m-2 justify-content-center">
+                <div id="similar" class="mx-auto "></div>
+            </div>
+
+            <div class="row m-2 justify-content-center">
+                <div class="col-lg-2 mx-auto ">
+                    <canvas class="border my-2" id="k1" width="160" height="120" FaceId="0"></canvas>
+                </div>
+                <div class="col-lg-2 mx-auto">
+                    <canvas class="border my-2" id="k2" width="160" height="120" FaceId="0"></canvas>
+                </div>
+                <div class="col-lg-2 mx-auto">
+                    <canvas class="border my-2" id="k3" width="160" height="120" FaceId="0"></canvas>
+                </div>
+                <div class="col-lg-2 mx-auto">
+                    <canvas class="border my-2" id="k4" width="160" height="120" FaceId="0"></canvas>
+                </div>
+                <div class="col-lg-2 mx-auto">
+                    <canvas class="border my-2" id="k5" width="160" height="120" FaceId="0"></canvas>
+                </div>
+            </div>
+
         </div>
+
 		<script language="JavaScript">
-			 set_webcam()
+		    start_page()
 		</script>
 
     </body>
