@@ -54,6 +54,7 @@ def add_to_collection():
 
     # add to collection / remove old one
     id5 = myjson['myid5']
+    print("id5" + str(id5))
     faceid = add_face_to_collection(collname, image_name)
 
     # check if face is in collection
