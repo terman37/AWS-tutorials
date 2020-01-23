@@ -8,9 +8,9 @@ app = Flask(__name__)
 CORS(app)  # added by me
 
 @app.route("/get_picture/", methods=['GET', 'POST'])
-def getpicture(myid):
+def getpicture():
     rdata = request.get_data()
-    image_name = 'image' + str(myid) + '.jpg'
+    image_name = 'image1.jpg'
     save_uri_as_jpeg(rdata, image_name)
     print("screenshot saved as %s" % image_name)
 
