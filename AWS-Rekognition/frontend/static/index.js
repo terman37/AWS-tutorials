@@ -16,7 +16,7 @@ function start_page(){
 }
 
 function snap(){
-    var canvas = document.getElementById("snapshot");
+    var canvas = document.getElementById("k0");
 	context = canvas.getContext("2d");
 	video = document.getElementById("webcam_live");
     context.drawImage(video, 0, 0,320,240);
@@ -33,10 +33,11 @@ function snap(){
 }
 
 function keepface(){
-    var snap = $('snapshot')
-
-
-
+    
+    for (i = 5; i > 0; i--){
+        context = $('k'+i).getContext("2d");
+        context.drawImage($('k'+(i-1)), 0, 0,320,240);
+    }
 
 
 }
