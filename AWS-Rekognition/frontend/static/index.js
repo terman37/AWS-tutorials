@@ -16,6 +16,8 @@ function start_page(){
 }
 
 function snap(){
+
+    var id = 1
     var canvas = document.getElementById("snapshot");
 	context = canvas.getContext("2d");
 	video = document.getElementById("webcam_live");
