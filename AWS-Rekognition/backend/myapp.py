@@ -183,11 +183,17 @@ def find_face_in_collection(collname, image_name):
         FaceMatchThreshold=90,
         QualityFilter='AUTO'
     )
-    response = response['FaceMatches']
-    response = response[0]
-    similarity = response['Similarity']
-    response = response['Face']
-    faceid = response['FaceId']
+
+    try:
+        response = response['FaceMatches']
+        response = response[0]
+        similarity = response['Similarity']
+        response = response['Face']
+        faceid = response['FaceId']
+    except:
+        similarity = 0
+        faceid = 0
+        
     return similarity, faceid
 
 
