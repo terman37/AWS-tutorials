@@ -32,7 +32,8 @@ def reset_collection():
     response = reko.delete_collection(
         CollectionId='mycollection'
     )
-    return True
+    print("Collection deleted ! ")
+    return "Collection deleted ! "
 
 @app.route("/add_to_collection/", methods=['GET', 'POST'])
 def add_to_collection():
