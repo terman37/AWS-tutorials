@@ -59,7 +59,7 @@ function keepface(){
         canvas = document.getElementById("k1");
         canvas.setAttribute("FaceId", data_back);
         for (i = 5; i > 0; i--){
-            console.log("k" + i + ":" + canvas.attributes.FaceId);
+            console.log("k" + i + ":" + canvas.attributes.FaceId.value);
         }
     }
 
