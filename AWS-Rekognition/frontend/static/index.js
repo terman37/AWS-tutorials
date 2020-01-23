@@ -73,7 +73,7 @@ function keepface(){
           url: 'http://'+backendip+':5000/add_to_collection/',
           data: myjson,
           success: result_f,
-          dataType: "json"
+          dataType: "html"
         });
 
     function result_f(data_back){
