@@ -59,14 +59,23 @@ function keepface(){
 //    var params = "image="+data_uri;
 //    params += "&id5="+id5;
 
-    var myjson = { image: data_uri, myid5: id5 };
+    var myjson = JSON.stringify({ image: data_uri, myid5: id5 });
 
-    $.post(
-            'http://'+backendip+':5000/add_to_collection/',
-            "json",
-            myjson,
-            result_f
-        );
+//    $.post(
+//            'http://'+backendip+':5000/add_to_collection/',
+//            "json",
+//            myjson,
+//            result_f
+//        );
+
+    $.ajax({
+          type: "POST",
+          url: 'http://'+backendip+':5000/add_to_collection/',
+          data: myjson,
+          success: result_f,
+          dataType: "json"
+        });
+
     function result_f(data_back){
         canvas = document.getElementById("k1");
         canvas.setAttribute("FaceId", data_back);
