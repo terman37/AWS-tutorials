@@ -39,7 +39,7 @@ function keepface(){
             source_canvas = document.getElementById("k"+(i-1));
             canvas = document.getElementById("k"+i);
             context = canvas.getContext("2d");
-            context.drawImage(source_canvas, 0, 0);
+            context.drawImage(source_canvas, 0, 0,160,120);
         } catch(err) {
             console.log(err)
         }
