@@ -65,7 +65,7 @@ function keepface(){
     var myjson = JSON.stringify({ image: data_uri, myid5: id5 });
 
     $.post(
-            'http://'+backendip+':5000/get_picture/',
+            'http://'+backendip+':5000/add_to_collection/',
             myjson,
             result_f,
             'html'
