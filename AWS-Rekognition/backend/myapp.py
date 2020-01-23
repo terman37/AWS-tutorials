@@ -79,7 +79,9 @@ def add_face_to_collection(collname, image_name):
     response = reko.describe_collection(
         CollectionId=collname
     )
-    print(response['FaceCount'])
+    if response['FaceCount']>4:
+        response = reko.list_faces(CollectionId=collname)
+        print(response)
 
     response = reko.index_faces(
         CollectionId=collname,
@@ -93,7 +95,7 @@ def add_face_to_collection(collname, image_name):
         MaxFaces=1,
         QualityFilter='AUTO'
     )
-    print(response)
+    # print(response)
     # return True
 
 def save_uri_as_jpeg(uri, imagename):
