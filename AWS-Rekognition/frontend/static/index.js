@@ -31,3 +31,12 @@ function snap(){
         $('#results').html($.parseHTML(data_back));
     }
 }
+
+function keepface(){
+    var snap = $('snapshot')
+
+
+
+
+
+}
