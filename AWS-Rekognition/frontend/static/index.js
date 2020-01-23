@@ -16,16 +16,20 @@ function start_page(){
 }
 
 function snap(){
-    var canvas = document.getElementById("screenshot1");
+    var canvas = document.getElementById("snapshot");
 	context = canvas.getContext("2d");
 	video = document.getElementById("webcam_live");
     context.drawImage(video, 0, 0,320,240);
-    $('#video').fadeOut('slow');
-    $('#screenshot1').fadeIn('slow');
-//    $('#snap').hide();
-//    $('#new').show();
-    // Allso show upload button
-    //$('#upload').show();
+    var data_uri = canvas.toDataURL();
+    $.post(
+            'http://'+backendip+':5000/get_picture'+id+'/',
+            data_uri,
+            result_f,
+            'html'
+        );
+    function result_f(data_back){
+        $('#results'+id).html($.parseHTML(data_back));
+    }
 
 
 }
