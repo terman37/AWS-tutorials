@@ -38,7 +38,7 @@ def reset_collection():
 @app.route("/add_to_collection/", methods=['GET', 'POST'])
 def add_to_collection():
     # rdata = request.get_data()
-    rdata = request.args.get("image")
+    rdata = request.form.get("image")
     print(rdata)
     image_name = 'image_for_collection.jpg'
     save_uri_as_jpeg(rdata, image_name)
