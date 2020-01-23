@@ -10,8 +10,6 @@
     </head>
 
     <body>
-
-		<script type="text/javascript" src="static/webcam.min.js"></script>
         <script type="text/javascript" src="static/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="static/bootstrap.min.js"></script>
 		<script src="static/index.js"></script>
@@ -21,20 +19,13 @@
                 <div class="mx-auto h3"> AWS Rekognition Test </div>
             </div>
 
-            <div class="row justify-content-end">
-                <div id="compare" class="mx-auto h2"></div>
-            </div>
             <div class="row">
-                <div class="col-3 mx-1">
+                <div class="col-4 mx-1">
                     <div class="row justify-content-center m-2">
-                        <video autoplay="true" id="webcam_live" width="320" height="240">
-
-                        </video>
+                        <video autoplay="true" id="webcam_live" width="320" height="240"></video>
                     </div>
                     <div class="row justify-content-center m-2">
                         <input class="btn btn-info m-1" type=button value="Take Snapshot 1" onClick="snap()">
-                        <input class="btn btn-info m-1" type=button value="Take Snapshot 2" onClick="take_snapshot(2)">
-                        <input class="btn btn-success m-1" type=button value="Compare pics" onClick="rekognize()">
                     </div>
                 </div>
 
@@ -42,25 +33,20 @@
                     <div class="row justify-content-center m-2">
                         <canvas id="snapshot" width="320" height="240"></canvas>
                     </div>
+                </div>
+
+                <div class="col-4 mx-1">
                     <div class="row justify-content-center m-2">
                         <div id="results1"></div>
                     </div>
                 </div>
 
-                <div class="col-4 mx-1">
-                    <div class="row justify-content-center m-2">
-                        <div id="screenshot2"></div>
-                    </div>
-                    <div class="row justify-content-center m-2">
-                        <div id="results2"></div>
-                    </div>
-                </div>
             </div>
         </div>
+
 		<script language="JavaScript">
 		    start_page()
-			 //set_webcam()
 		</script>
-        <script>
+
     </body>
 </html>
