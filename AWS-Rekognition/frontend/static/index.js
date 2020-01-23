@@ -28,10 +28,11 @@ function snap(){
             'http://'+backendip+':5000/get_picture/',
             data_uri,
             result_f,
-            'html'
+            'json'
         );
     function result_f(data_back){
-        $('#results').html($.parseHTML(data_back));
+        data=JSON.parse(data_back)
+        $('#results').html($.parseHTML(data.answer));
         canvas = document.getElementById("k5");
         if (canvas.attributes.FaceId.value != 0){
             $('#results').prepend("<p>Not possible to add more faces  --> Reset Collection</p>");
