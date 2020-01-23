@@ -33,6 +33,10 @@ function snap(){
     function result_f(data_back){
         $('#results').html($.parseHTML(data_back.answer));
         canvas = document.getElementById("k5");
+        if (data_back.similar != 0){
+            $("#similar").html(data_back.similar)
+        }
+
         if (canvas.attributes.FaceId.value != 0){
             $('#results').prepend("<p>Not possible to add more faces  --> Reset Collection</p>");
         } else {
