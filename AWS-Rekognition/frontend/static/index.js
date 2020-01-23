@@ -32,21 +32,22 @@ function snap(){
         );
     function result_f(data_back){
         $('#results').html($.parseHTML(data_back.answer));
-        canvas = document.getElementById("k5");
-        console.log(data_back.similar)
+        
         if (data_back.similar != 0){
-            $("#similar").html("Similarity: <kbd>" + data_back.similar + "</kbd>")
+            $("#similar").html("Similarity: <kbd>" + data_back.similar + "</kbd>");
             for (i = 5; i > 0; i--){
                 canvas = document.getElementById("k"+i);
                 if (canvas.attributes.FaceId.value == data_back.faceid){
-                    $("#k"+i).removeClass("bg-success").addClass("bg-success")
+                    console.log("match at "+i);
+                    $("#k"+i).removeClass("bg-success").addClass("bg-success");
                 } else {
-                    $("#k"+i).removeClass("bg-success")
+                    $("#k"+i).removeClass("bg-success");
                 }
                 console.log("k" + i + ":" + canvas.attributes.FaceId.value);
             }
         }
 
+        canvas = document.getElementById("k5");
         if (canvas.attributes.FaceId.value != 0){
             $('#results').prepend("<p>Not possible to add more faces  --> Reset Collection</p>");
         } else {
