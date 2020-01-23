@@ -73,13 +73,14 @@ def create_collection_if_needded():
         collname = collid[0]
     return collname
 
+
 def add_face_to_collection(collname, image_name):
     reko = boto3.client('rekognition')
 
     response = reko.describe_collection(
         CollectionId=collname
     )
-    if response['FaceCount']>4:
+    if response['FaceCount'] > 1:
         response = reko.list_faces(CollectionId=collname)
         print(response)
 
@@ -97,6 +98,7 @@ def add_face_to_collection(collname, image_name):
     )
     # print(response)
     # return True
+
 
 def save_uri_as_jpeg(uri, imagename):
     imgData = str(uri)
