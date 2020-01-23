@@ -32,7 +32,6 @@ function snap(){
         );
     function result_f(data_back){
         $('#results').html($.parseHTML(data_back.answer));
-
         if (data_back.similar != 0){
             $("#similar").html("Similarity: <kbd>" + data_back.similar + "</kbd>");
             for (i = 5; i > 0; i--){
@@ -44,6 +43,11 @@ function snap(){
                     $("#k"+i).parent().removeClass("bg-success");
                 }
                 console.log("k" + i + ":" + canvas.attributes.FaceId.value);
+            }
+        } else {
+            $("#similar").html("");
+            for (i = 5; i > 0; i--){
+                $("#k"+i).parent().removeClass("bg-success");
             }
         }
 
