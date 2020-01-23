@@ -7,7 +7,7 @@
 
 #my_cam_div {
     margin: 0px auto;
-	width: 32px;
+	width: 320px;
 	height: 240px;
-	border: 10px #333 solid;
+	border: 5px #333 solid;
 }
