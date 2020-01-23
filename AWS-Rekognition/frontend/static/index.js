@@ -64,7 +64,7 @@ function keepface(){
     var params = "image=" & data_uri
     params += "&myid5=" + id5
 //    var myjson = JSON.stringify({ image: data_uri, myid5: id5 });
-
+    console.log(params)
     $.post(
             'http://'+backendip+':5000/add_to_collection/',
             params,
