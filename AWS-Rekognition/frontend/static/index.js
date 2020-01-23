@@ -2,6 +2,7 @@
 var backendip = '18.207.158.88'
 
 function start_page(){
+    $('btnkeep').hide();
     var video = document.querySelector("#webcam_live");
     if (navigator.mediaDevices.getUserMedia) {
         var constraints = { video: true }
@@ -30,6 +31,7 @@ function snap(){
     function result_f(data_back){
         $('#results').html($.parseHTML(data_back));
     }
+    $('btnkeep').show();
 }
 
 function keepface(){
