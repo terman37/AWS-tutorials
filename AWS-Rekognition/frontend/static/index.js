@@ -31,7 +31,8 @@ function snap(){
             'json'
         );
     function result_f(data_back){
-        data=JSON.parse(data_back)
+        console.log(data_back)
+        data=JSON.parse(data_back);
         $('#results').html($.parseHTML(data.answer));
         canvas = document.getElementById("k5");
         if (canvas.attributes.FaceId.value != 0){
