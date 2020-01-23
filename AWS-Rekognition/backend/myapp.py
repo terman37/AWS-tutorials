@@ -29,17 +29,19 @@ def getpicture():
 
 @app.route("/add_to_collection/", methods=['GET', 'POST'])
 def add_to_collection():
-    # rdata = request.get_data()
-    # image_name = 'image_for_collection.jpg'
-    # save_uri_as_jpeg(rdata, image_name)
+    rdata = request.get_data()
+    image_name = 'image_for_collection.jpg'
+    save_uri_as_jpeg(rdata, image_name)
 
     # Upload in S3 bucket
-    # upload_to_S3(image_name)
+    upload_to_S3(image_name)
 
     # get_collection id
-    get_collection_id()
+    collname = create_collection_if_needded()
+    print(collname)
 
     # add to collection / remove old one
+    add_face_to_collection(collname, image_name)
 
     # check if face is in collection
 
@@ -55,21 +57,44 @@ def comparepicture():
     return answer
 
 
-def get_collection_id():
+def create_collection_if_needded():
     reko = boto3.client('rekognition')
     response = reko.list_collections(
         MaxResults=1
     )
     collid = response['CollectionIds']
     if len(collid) == 0:
-        collid = reko.create_collection(
+        collname = 'mycollection'
+        res = reko.create_collection(
             CollectionId='mycollection'
         )
-        print('create collection')
+        print(collname + ' collection created')
     else:
-        print(collid[0])
-    print(collid)
+        collname = collid[0]
+    return collname
 
+def add_face_to_collection(collname, image_name):
+    reko = boto3.client('rekognition')
+
+    response = reko.describe_collection(
+        CollectionId=collname
+    )
+    print(response['FaceCount'])
+
+    response = reko.index_faces(
+        CollectionId=collname,
+        Image={
+            'S3Object': {
+                'Bucket': 'images-for-reko',
+                'Name': image_name
+            }
+        },
+        DetectionAttributes=['DEFAULT'],
+        MaxFaces=1,
+        QualityFilter='AUTO'
+    )
+    print(response)
+    # return True
 
 def save_uri_as_jpeg(uri, imagename):
     imgData = str(uri)
