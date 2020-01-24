@@ -39,7 +39,7 @@ function snap(){
         context.beginPath();
         context.lineWidth = "3";
         context.strokeStyle = "red";
-        context.rect(data_back.bbox.Top*240, data_back.bbox.Left*320, data_back.bbox.Width*320, data_back.bbox.Height*240);
+        context.rect( data_back.bbox.Left*320, data_back.bbox.Top*240, data_back.bbox.Width*320, data_back.bbox.Height*240);
         context.stroke();
 
         if (data_back.similar != 0){
