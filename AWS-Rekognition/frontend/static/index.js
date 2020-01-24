@@ -33,7 +33,13 @@ function snap(){
         );
     function result_f(data_back){
         $('#results').html($.parseHTML(data_back.answer));
-        console.log(data_back.bbox.Height)
+
+        canvas = document.getElementById("k0");
+        context = canvas.getContext("2d");
+        context.beginPath();
+        context.rect(data_back.bbox.Top, data_back.bbox.Left, data_back.bbox.Width, data_back.bbox.Height);
+        context.stroke();
+
         if (data_back.similar != 0){
             $("#similar").html("Similarity: <kbd>" + data_back.similar + "%</kbd>");
             for (i = 5; i > 0; i--){
