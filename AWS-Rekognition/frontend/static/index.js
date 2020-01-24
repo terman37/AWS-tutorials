@@ -1,5 +1,5 @@
 
-var backendip = '18.207.158.88'
+var backendip = '3.80.232.151'
 
 function start_page(){
     $('#btnkeep').hide();
