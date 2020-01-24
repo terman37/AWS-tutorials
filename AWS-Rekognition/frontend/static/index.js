@@ -33,6 +33,7 @@ function snap(){
         );
     function result_f(data_back){
         $('#results').html($.parseHTML(data_back.answer));
+        console.log(data_back.bbox)
         if (data_back.similar != 0){
             $("#similar").html("Similarity: <kbd>" + data_back.similar + "%</kbd>");
             for (i = 5; i > 0; i--){
