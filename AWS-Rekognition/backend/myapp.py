@@ -23,7 +23,7 @@ def getpicture():
     myjson = AWSdetect_faces(image_name)
 
     # Extract Json infos
-    nbfaces, answer = get_features_from_json(myjson)
+    nbfaces, bbox, answer = get_features_from_json(myjson)
 
     # check if face is found in collection
     similarity = 0
@@ -34,7 +34,7 @@ def getpicture():
         if nbfaces > 0:
             similarity, faceid = find_face_in_collection(collname, image_name)
 
-    json = {'answer': answer, 'faceid': faceid, 'similar': round(similarity, 2), 'nbfaces': nbfaces}
+    json = {'answer': answer, 'faceid': faceid, 'similar': round(similarity, 2), 'nbfaces': nbfaces, 'bbox': bbox}
 
     return jsonify(json)
 
@@ -239,6 +239,7 @@ def get_features_from_json(myjson):
     notusedattributes = ['BoundingBox', 'Landmarks', 'Pose', 'Quality', 'Confidence']
     if nbfaces == 1:
         face = facedetails[0]
+        bbox = face['BoundingBox']
         mystr += '<table class="table table-sm table-striped bg-light m-2">'
         for attribute, details in face.items():
             if attribute not in notusedattributes:
@@ -259,7 +260,7 @@ def get_features_from_json(myjson):
         mystr += "%d faces found on picture...\n" % len(facedetails)
     else:
         mystr += "Nobody on picture...\n"
-    return nbfaces, mystr
+    return nbfaces, bbox, mystr
 
 
 if __name__ == "__main__":
