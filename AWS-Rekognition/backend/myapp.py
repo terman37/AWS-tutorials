@@ -231,8 +231,6 @@ def AWScomparefaces():
 
 def get_features_from_json(myjson):
     # create details table from json response from detect faces
-    print(myjson)
-
     mystr = ""
     facedetails = myjson['FaceDetails']
     nbfaces = len(facedetails)
