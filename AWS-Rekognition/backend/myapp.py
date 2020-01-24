@@ -43,11 +43,13 @@ def getpicture():
 def reset_collection():
     # Delete collection
     reko = boto3.client('rekognition')
-    response = reko.delete_collection(
-        CollectionId='mycollection'
-    )
-    # print("Collection deleted ! ")
-    return "Collection deleted ! "
+    try:
+        response = reko.delete_collection(
+            CollectionId='mycollection'
+        )
+        return "Collection deleted ! "
+    except:
+        return "No Collection to delete ! "
 
 
 @app.route("/add_to_collection/", methods=['GET', 'POST'])
