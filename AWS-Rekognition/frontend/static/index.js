@@ -132,6 +132,13 @@ function resetcol(){
         context = canvas.getContext("2d");
         context.clearRect(0, 0, 160, 120);
         canvas.setAttribute("FaceId", "0");
+        $("#k"+i).parent().removeClass("bg-success");
     }
+    canvas = document.getElementById("k0");
+    context = canvas.getContext("2d");
+    context.clearRect(0, 0, 320, 240);
+
+    $("#similar").html("");
+    $('#results').html("");
 
 }
