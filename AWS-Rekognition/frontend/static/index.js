@@ -37,6 +37,8 @@ function snap(){
         canvas = document.getElementById("k0");
         context = canvas.getContext("2d");
         context.beginPath();
+        context.lineWidth = "3";
+        context.strokeStyle = "red";
         context.rect(data_back.bbox.Top, data_back.bbox.Left, data_back.bbox.Width, data_back.bbox.Height);
         context.stroke();
 
