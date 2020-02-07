@@ -10,7 +10,7 @@
 4. [Setup a database using RDS and connect it](04-RDS-setup-and-access/) 
 5. [AWS Sdk - Python boto3](05-SDK-boto3/)
 6. [Create / Setup a Jupyter Notebook and virtual environments](06-Jupyter-setup-and-venv/)
-7. [Datascience POC setup (Keras/Tensorflow)](07-MNIST-Keras-TensorFlow/)
+7. [MNIST handrwritten digit recognition (Keras/Tensorflow)](07-MNIST-Keras-TensorFlow/)
 9. [SageMaker](08-SageMaker/)
 9. [Rekognition (using Flask backend)](09-Rekognition/)
 
