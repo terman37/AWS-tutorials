@@ -1,5 +1,6 @@
 
-var backendip = '3.80.232.151'
+var ip = location.host;
+var backendip = ip;
 
 function start_page(){
     $('#btnkeep').hide();

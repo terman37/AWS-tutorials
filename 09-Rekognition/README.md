@@ -26,7 +26,7 @@
 
   
 
-## Setup Frontend server
+## Setup Frontend server:
 
 - Security group: open port 22 and 80.
 
@@ -47,7 +47,7 @@
 
   ```bash
   sudo rm /etc/nginx/sites-enabled/default
-  sudo cp ~/AWS-tutorials/AWS-Rekognition/frontend/frontend.com.conf /etc/nginx/sites-enabled/
+  sudo cp ~/AWS-tutorials/AWS-09-Rekognition/frontend/frontend.com.conf /etc/nginx/sites-enabled/
   sudo nginx -s reload
   ```
 
@@ -61,18 +61,26 @@
 
     <img src="chrome_webcam.png" alt="chrome_webcam" style="zoom:50%;" />
 
-- modify backend ip adress in index.js (1st line in script)
-
-  ```
-  nano ~/AWS-tutorials/AWS-Rekognition/frontend/static/index.js
-  ```
-
-  
 
 
-## Setup Backend Server
+## IAM Role:
+
+- Create an IAM role that will be used for backend to access rekognition and S3
+  - attach policies:
+    - AmazonS3FullAccess
+    - AmazonRekognitionFullAccess
+
+<img src="iam_role.png" alt="iam_role" style="zoom:50%;" />
+
+
+
+## Setup Backend Server:
 
 - Security group: open port 22 and 5000.
+
+- IAM role:
+
+  - attach previously created IAM role to EC2 instance
 
 - install miniconda:
 
@@ -105,24 +113,11 @@
   git clone https://github.com/terman37/AWS-tutorials.git
   ```
 
-- setup AWS credentials for boto3
+- setup AWS config for boto3
 
   ```
   mkdir ~/.aws
   ```
-  
-  ```bash
-  nano ~/.aws/credentials
-  ```
-  
-  - should look like this: copy your credentials (from vocareum in my case)
-  
-    ```
-    [default]
-    aws_access_key_id=...
-    aws_secret_access_key=...
-    aws_session_token=...
-    ```
   
   ```bash
   nano ~/.aws/config
@@ -134,11 +129,11 @@
     [default]
     region = us-east-1
     ```
-
+  
 - run Flask app
 
   ```bash
-  python ~/AWS-tutorials/AWS-Rekognition/backend/myapp.py
+  python ~/AWS-tutorials/09-Rekognition/backend/myapp.py
   ```
 
 
@@ -147,31 +142,19 @@
 
 - before to launch:
 
-  - update credentials:
-
-    ```bash
-    nano ~/.aws/credentials
-    ```
-
-  - put backent IP in index.js
-
-    ```bash
-    nano ~/AWS-tutorials/AWS-Rekognition/frontend/static/index.js
-    ```
-
   - put frontend IP in chrome to allow webcam
 
     > chrome://flags/#unsafely-treat-insecure-origin-as-secure
   
   - do not forget to launch Flask test server
-  
-    ```
-    conda activate flask
-    python ~/AWS-tutorials/AWS-Rekognition/backend/myapp.py
-    ```
-  
-    
 
+    ```
+conda activate flask
+    python ~/AWS-tutorials/09-Rekognition/backend/myapp.py
+    ```
+  
+  
+  
 - Test frontend access in chrome at [http://Frontend-PublicIP](http://<PublicIP>)
 
   should look like this: except the face :-)
