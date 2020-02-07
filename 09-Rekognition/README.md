@@ -6,11 +6,9 @@
 
 - html webpage to take a picture using webcam
 - upload picture to S3 bucket
-- use facial analysis to extract attributes from pictures (show it)
+- use facial analysis to extract attributes from pictures (show it) - only **one** face on image
 - keep up to 5 pictures in collection
 - check for each screenshot if it exists in collection
-
-
 
 ## Architecture:
 
