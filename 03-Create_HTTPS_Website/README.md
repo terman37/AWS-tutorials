@@ -144,3 +144,12 @@ Once generated - download CRT file
 #### Import Certificate
 
 ​	MMC CONSOLE / personal certificates / import
+
+<img src="crt_import.png" alt="crt_import" style="zoom:50%;" />
+
+#### Add binding
+
+in IIS / bindings
+
+<img src="https_binding_crt.png" alt="https_binding_crt" style="zoom:50%;" />
+
