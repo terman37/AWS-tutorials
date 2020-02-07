@@ -139,3 +139,8 @@
    - via DNS: add DNS CNAME entry in route 53
      - (can check if CNAME entry is propagated: MXtoolbox.com /  CNAME lookup)
 
+Once generated - download CRT file
+
+#### Import Certificate
+
+​	MMC CONSOLE / personal certificates / import
