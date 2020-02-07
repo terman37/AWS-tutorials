@@ -27,7 +27,9 @@
 
 ## Setup Frontend server:
 
-- Security group: open port 22 and 80.
+- Security group: 
+
+  - Open port 22 and 80.
 
 - Install nginx server
 
@@ -75,7 +77,9 @@
 
 ## Setup Backend Server:
 
-- Security group: open port 22 and 5000.
+- Security group: 
+
+  - Open port 22 and 5000.
 
 - IAM role:
 
