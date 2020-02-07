@@ -14,17 +14,18 @@
 
 ## Architecture:
 
-- front end web server using **nginx**: 
+- Front end web server using **nginx**: 
 
   - t2.micro ubuntu server 18.04 ami
   - index.html / static (with css, js files)
 
-- backend processing using **flask**:
+- Backend processing using **flask**:
 
   - t2.micro ubuntu server 18.04 ami
   - rekognition api use of images
 
-  
+
+*For this Test Backend and Frontend are on the same machine (to avoid the use of load balancer to redirect to backend on private subnet)*
 
 ## Setup Frontend server:
 
@@ -37,27 +38,27 @@
   sudo apt install nginx
   ```
 
-- clone github repository
+- Clone github repository
 
   ```
   git clone https://github.com/terman37/AWS-tutorials.git
   ```
 
-- change default nginx server config
+- Change default nginx server config
 
   ```bash
   sudo rm /etc/nginx/sites-enabled/default
-  sudo cp ~/AWS-tutorials/AWS-09-Rekognition/frontend/frontend.com.conf /etc/nginx/sites-enabled/
+  sudo cp ~/AWS-tutorials/09-Rekognition/frontend/frontend.com.conf /etc/nginx/sites-enabled/
   sudo nginx -s reload
   ```
 
   #### Trick (allow insecure website to use webcam in chrome)
 
-  - navigate to:
+  - Navigate to:
 
     > chrome://flags/#unsafely-treat-insecure-origin-as-secure
 
-  - enable feature and add public ip adress of frontend server
+  - Enable feature and add public ip adress of frontend server
 
     <img src="chrome_webcam.png" alt="chrome_webcam" style="zoom:50%;" />
 
@@ -66,7 +67,7 @@
 ## IAM Role:
 
 - Create an IAM role that will be used for backend to access rekognition and S3
-  - attach policies:
+  - Attach policies:
     - AmazonS3FullAccess
     - AmazonRekognitionFullAccess
 
@@ -82,7 +83,7 @@
 
   - attach previously created IAM role to EC2 instance
 
-- install miniconda:
+- Install miniconda:
 
   ```bash
   sudo apt update
@@ -90,16 +91,16 @@
   sh Miniconda3-latest-Linux-x86_64.sh
   ```
 
-- exit and reconnect to ssh
+- Exit and reconnect to ssh
 
-- create virtual environment (named flask)
+- Create virtual environment (named flask)
 
   ```bash
   conda create -n flask python=3.7
   conda activate flask
   ```
 
-- install Flask
+- Install Flask
 
   ```bash
   pip install Flask
@@ -107,13 +108,13 @@
   pip install boto3
   ```
 
-- clone github repository
+- Clone github repository
 
   ```bash
   git clone https://github.com/terman37/AWS-tutorials.git
   ```
 
-- setup AWS config for boto3
+- Setup AWS config for boto3
 
   ```
   mkdir ~/.aws
@@ -130,7 +131,7 @@
     region = us-east-1
     ```
   
-- run Flask app
+- Run Flask app
 
   ```bash
   python ~/AWS-tutorials/09-Rekognition/backend/myapp.py
@@ -140,20 +141,18 @@
 
 ## Test it !
 
-- before to launch:
+- Before to launch:
 
-  - put frontend IP in chrome to allow webcam
+  - Put frontend IP in chrome to allow webcam
 
     > chrome://flags/#unsafely-treat-insecure-origin-as-secure
   
-  - do not forget to launch Flask test server
+  - Do not forget to launch Flask test server
 
     ```
-conda activate flask
-    python ~/AWS-tutorials/09-Rekognition/backend/myapp.py
+bash ~/AWS-tutorials/09-Rekognition/launch_backend.bash
     ```
-  
-  
+    
   
 - Test frontend access in chrome at [http://Frontend-PublicIP](http://<PublicIP>)
 
